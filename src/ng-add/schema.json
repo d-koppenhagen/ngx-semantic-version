@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "ngx-semantic-version",
+  "title": "ngx-semantic-version Schema",
+  "description": "configure commitlint, husky, commitizen and standard-version configuration",
+  "properties": {
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Skip installing the npm packages",
+      "$default": {
+        "$source": "argv"
+      }
+    }
+  },
+  "required": []
+}

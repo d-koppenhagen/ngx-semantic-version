@@ -1,9 +1,9 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "hello": {
-      "description": "A blank schematic.",
-      "factory": "./hello/index#hello"
+    "ng-add": {
+      "description": "This scematic will add and configure commitlint, husky, commitizen and standard-version configuration",
+      "factory": "./ng-add/index"
     }
   }
 }

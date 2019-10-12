@@ -1,16 +1,25 @@
 {
-  "name": "hello",
+  "name": "ngx-semantic-version",
   "version": "0.0.0",
-  "description": "A blank schematics",
+  "description": "a package that'll add commitlint, husky, commitizen and standard-version configuration",
   "scripts": {
+    "release": "standard-version",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "commitlint",
+    "commitizen",
+    "husky",
+    "standard-version",
+    "changelog",
+    "semver",
+    "angular",
+    "angular-cli"
   ],
-  "author": "",
+  "author": "Danny Koppenhagen <mail@d-koppenhagen.de>",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
@@ -20,5 +29,22 @@
     "@types/node": "^8.0.31",
     "jasmine": "^3.3.1",
     "typescript": "~3.5.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-angular": "^8.2.0",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.8",
+    "standard-version": "^7.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
