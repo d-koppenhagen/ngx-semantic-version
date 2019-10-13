@@ -19,7 +19,12 @@
     "angular",
     "angular-cli"
   ],
-  "author": "Danny Koppenhagen <mail@d-koppenhagen.de>",
+  "author": "Danny Koppenhagen <mail@d-koppenhagen.de> (https://d-koppenhagen.de)",
+  "homepage": "https://github.com/d-koppenhagen/ngx-semantic-version",
+  "bugs": {
+    "url": "https://github.com/d-koppenhagen/ngx-semantic-version/issues",
+    "email": "mail@d-koppenhagen.de"
+  },
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
