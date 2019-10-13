@@ -32,6 +32,7 @@ const addDependencies = () => (tree: Tree, context: SchematicContext) => {
   const devDepsToAdd = {
     '@commitlint/cli': '^8.2.0',
     '@commitlint/config-angular': '^8.2.0',
+    commitizen: '^4.0.3',
     'cz-conventional-changelog': '^3.0.2',
     husky: '^3.0.8',
     'standard-version': '^7.0.0',
@@ -63,6 +64,7 @@ const addHuskyConfig = () => (tree: Tree, context: SchematicContext) => {
 
   const huskyConfig = {
     hooks: {
+      'prepare-commit-msg': 'exec < /dev/tty && git cz --hook',
       'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
     },
   };
