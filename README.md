@@ -31,6 +31,12 @@ Just run the following command:
 ng add ngx-semantic-version
 ```
 
+#### available options
+
+| Flag             | Description                                                        |
+| ---------------- | ------------------------------------------------------------------ |
+| `--skip-install` | Skips installing new `node_modules` after modifying `package.json` |
+
 ### Update the schematics
 
 An update schematic is not implemented jet.

@@ -7,9 +7,7 @@
     "skipInstall": {
       "type": "boolean",
       "description": "Skip installing the npm packages",
-      "$default": {
-        "$source": "argv"
-      }
+      "default": false
     }
   },
   "required": []
