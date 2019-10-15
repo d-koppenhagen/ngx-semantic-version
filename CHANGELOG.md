@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.0.1...v0.0.3) (2019-10-15)
+
+
+### Features
+
+* **commitizen:** adds commitizen as dependncy and husky hook ([87f316e](https://github.com/d-koppenhagen/ngx-semantic-version/commit/87f316e68358ba101adfd7b22b4ebd12f456e5fa))
+* adds ng-update support ([04ea589](https://github.com/d-koppenhagen/ngx-semantic-version/commit/04ea589cea711759ce5b90f4f461871c7f5f513c)), closes [#1](https://github.com/d-koppenhagen/ngx-semantic-version/issues/1)
+* removes `prepare-commit-msg` husky hook ([38d4a58](https://github.com/d-koppenhagen/ngx-semantic-version/commit/38d4a58eb32ce6e29b7c3ce27be192973fd19c38))
+
 ### [0.0.2](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.0.1...v0.0.2) (2019-10-13)
 
 
