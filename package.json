@@ -1,6 +1,6 @@
 {
   "name": "ngx-semantic-version",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a package that'll add commitlint, husky, commitizen and standard-version configuration",
   "scripts": {
     "release": "standard-version",

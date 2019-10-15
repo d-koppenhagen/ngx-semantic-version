@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.1.0...v0.1.1) (2019-10-15)
+
+
+### Bug Fixes
+
+* **ng-update:** use migration-02 within correct version ([4f971b7](https://github.com/d-koppenhagen/ngx-semantic-version/commit/4f971b78da89b67ef37fdc76aef604891b19c248))
+
 ## [0.1.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.0.4...v0.1.0) (2019-10-15)
 
 
