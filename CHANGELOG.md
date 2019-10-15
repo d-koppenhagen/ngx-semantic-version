@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.0.4...v0.1.0) (2019-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **commitlint:** The default commitlint configuration was changed to `@commitlint/config-conventional` (before: `@commitlint/config-angular`
+
+### Features
+
+* **commitlint:** use @commitlint/config-conventional ([6de7705](https://github.com/d-koppenhagen/ngx-semantic-version/commit/6de7705c4709cc80ed7e469aded1600af432ba58)), closes [#8](https://github.com/d-koppenhagen/ngx-semantic-version/issues/8)
+
 ### [0.0.4](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.0.3...v0.0.4) (2019-10-15)
 
 
