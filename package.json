@@ -28,7 +28,7 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "ng-update": {
-    "migrations": "./src/ng-update/migrations.json"
+    "migrations": "./src/migration.json"
   },
   "dependencies": {
     "@angular-devkit/core": "^8.3.9",

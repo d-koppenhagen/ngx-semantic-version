@@ -6,7 +6,7 @@ import {
 import * as path from 'path';
 
 const packagePath = '/package.json';
-const collectionPath = path.join(__dirname, '../migrations.json');
+const collectionPath = path.join(__dirname, '../../migration.json');
 
 const huskykHookForTest = (hook: string, command: string) => {
   return `{
