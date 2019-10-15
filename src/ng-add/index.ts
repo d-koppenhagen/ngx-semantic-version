@@ -34,7 +34,7 @@ const addDependencies = () => (tree: Tree, context: SchematicContext) => {
     '@commitlint/config-angular': '^8.2.0',
     commitizen: '^4.0.3',
     'cz-conventional-changelog': '^3.0.2',
-    husky: '^3.0.8',
+    husky: '^3.0.9',
     'standard-version': '^7.0.0',
   };
   packageJson.devDependencies = {

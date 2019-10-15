@@ -5,7 +5,6 @@ import {
   UnitTestTree,
 } from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
-// import * as path from 'path';
 
 import { Schema } from './schema';
 

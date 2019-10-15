@@ -6,7 +6,7 @@
     "release": "standard-version",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "npm run build && jasmine **/*_spec.js"
   },
   "keywords": [
     "schematics",
@@ -27,6 +27,9 @@
   },
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "ng-update": {
+    "migrations": "./src/ng-update/migrations.json"
+  },
   "dependencies": {
     "@angular-devkit/core": "^8.3.9",
     "@angular-devkit/schematics": "^8.3.9",
@@ -41,11 +44,13 @@
     "@schematics/angular": "^8.3.9",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "husky": "^3.0.8",
+    "husky": "^3.0.9",
     "standard-version": "^7.0.0"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },

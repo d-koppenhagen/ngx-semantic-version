@@ -10,8 +10,17 @@ export interface PackageJson {
   version?: string;
   license?: string;
   scripts?: object;
-  config?: object;
-  husky?: object;
+  config?: {
+    commitizen?: {
+      path?: string;
+    };
+  };
+  husky?: {
+    hooks?: {
+      'prepare-commit-msg'?: string;
+      'commit-msg'?: string;
+    };
+  };
 }
 
 class FileNotFoundException extends Error {
