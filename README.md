@@ -47,7 +47,7 @@ An update schematic is not implemented jet.
 
 Commitlint will lint your commit massage and check it against some common rules.
 It will throw an error if the messages doesn't match with the rules.
-This schematic will install the ruleset [`@commitlint/config-angular`](https://npmjs.com/package/@commitlint/config-angular) by default.
+This schematic will install the ruleset [`@commitlint/config-conventional`](https://npmjs.com/package/@commitlint/config-conventional) by default.
 
 After adding the schematics you will be able to adjust the rules for your
 personal needs by adjusting the added file `commitlint.config.js`.
@@ -71,7 +71,7 @@ final message via an interactive cli.
 
 ![commitizen cli](./assets/commitizen.png)
 
-> Tip: if you are using vscode, you can add the plugin [Visual Studio Code Commitizen Support](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) whcih will let you build the commit message directly via vscode.
+> Tip: if you are using vscode, you can add the plugin [Visual Studio Code Commitizen Support](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) which will let you build the commit message directly via vscode.
 > ![commitizen vscode plugin](./assets/commitizen-vscode.png)
 
 ### [standard-version](https://www.npmjs.com/package/standard-version)

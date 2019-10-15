@@ -25,7 +25,7 @@ const packageJsonAfterMigration = (packgeJsonRawContent: string) => {
   return JSON.parse(updatedTree.readContent(packagePath));
 };
 
-describe('update from version 0.0.2', () => {
+describe('update from version 0.0.4', () => {
   const prepareCommitMsgHookToBeRemoved = 'exec < /dev/tty && git cz --hook';
 
   it(`should remove a previous configuration`, () => {

@@ -4,12 +4,12 @@ import { SchematicsException, Tree } from '@angular-devkit/schematics';
 const PACKAGE_JSON = 'package.json';
 
 export interface PackageJson {
-  dependencies: object;
-  devDependencies: object;
+  dependencies: { [key: string]: string };
+  devDependencies: { [key: string]: string };
   name?: string;
   version?: string;
   license?: string;
-  scripts?: object;
+  scripts?: { [key: string]: string };
   config?: {
     commitizen?: {
       path?: string;

@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-angular": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@schematics/angular": "^8.3.9",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",

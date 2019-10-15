@@ -31,7 +31,7 @@ const addDependencies = () => (tree: Tree, context: SchematicContext) => {
 
   const devDepsToAdd = {
     '@commitlint/cli': '^8.2.0',
-    '@commitlint/config-angular': '^8.2.0',
+    '@commitlint/config-conventional': '^8.2.0',
     commitizen: '^4.0.3',
     'cz-conventional-changelog': '^3.0.2',
     husky: '^3.0.9',

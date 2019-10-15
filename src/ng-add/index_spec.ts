@@ -43,7 +43,7 @@ describe('ngx-semantic-version schematic', () => {
       const packageJson = JSON.parse(getFileContent(appTree, packageJsonPath));
       const { devDependencies } = packageJson;
       expect(devDependencies['@commitlint/cli']).toBeDefined();
-      expect(devDependencies['@commitlint/config-angular']).toBeDefined();
+      expect(devDependencies['@commitlint/config-conventional']).toBeDefined();
       expect(devDependencies.commitizen).toBeDefined();
       expect(devDependencies['cz-conventional-changelog']).toBeDefined();
       expect(devDependencies.husky).toBeDefined();

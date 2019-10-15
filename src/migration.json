@@ -5,6 +5,11 @@
       "description": "Updates to Version 0.0.4",
       "version": "0.0.4",
       "factory": "./ng-update/migration-01/index"
+    },
+    "migration-02": {
+      "description": "Updates to Version 0.0.5",
+      "version": "0.0.5",
+      "factory": "./ng-update/migration-02/index"
     }
   }
 }
