@@ -26,6 +26,9 @@ describe('update to version 0.0.5', () => {
     const pkg = packageJsonAfterMigration(beforeMigration);
     const { devDependencies } = pkg;
     expect(devDependencies['@commitlint/config-angular']).not.toBeDefined();
+    expect(devDependencies['@commitlint/config-conventional']).toEqual(
+      '^8.2.0'
+    );
   });
 
   it('should not remove modified @commitlint/config-angular version from package.json', () => {
