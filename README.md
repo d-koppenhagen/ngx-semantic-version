@@ -58,7 +58,7 @@ personal needs by adjusting the added file `commitlint.config.js`.
 You can find a description of supported adjustments in the
 [official documentation](https://commitlint.js.org/#/reference-rules).
 
-![commitizen cli](./assets/commitlint.png)
+![commitizen cli](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitlint.png)
 
 ### [husky](https://www.npmjs.com/package/husky)
 
@@ -72,10 +72,10 @@ to satisfy always the appropriate format. Commitizen will help you to build a
 commit message always in the appropriate format by letting you configure the
 final message via an interactive cli.
 
-![commitizen cli](./assets/commitizen.png)
+![commitizen cli](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen.png)
 
 > Tip: if you are using vscode, you can add the plugin [Visual Studio Code Commitizen Support](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) which will let you build the commit message directly via vscode.
-> ![commitizen vscode plugin](./assets/commitizen-vscode.png)
+> ![commitizen vscode plugin](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen-vscode.png)
 
 ### [standard-version](https://www.npmjs.com/package/standard-version)
 
