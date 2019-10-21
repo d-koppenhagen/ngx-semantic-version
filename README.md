@@ -33,9 +33,12 @@ ng add ngx-semantic-version
 
 #### available options
 
-| Flag             | Description                                                        |
-| ---------------- | ------------------------------------------------------------------ |
-| `--skip-install` | Skips installing new `node_modules` after modifying `package.json` |
+| Flag                      | Description                                                        |
+| ------------------------- | ------------------------------------------------------------------ |
+| `--skipInstall`           | Skips installing new `node_modules` after modifying `package.json` |
+| `--husky=false`           | Skips adding `husky` to the project                                |
+| `--commitizen=false`      | Skips adding `commitizen` to the project                           |
+| `--standardVersion=false` | Skips adding `standard-version` to the project                     |
 
 ### Update the schematics
 

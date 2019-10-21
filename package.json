@@ -1,7 +1,7 @@
 {
   "name": "ngx-semantic-version",
   "version": "0.1.2",
-  "description": "a package that'll add commitlint, husky, commitizen and standard-version configuration",
+  "description": "This schematic will add commitlint, husky, commitizen and standard-version configurations",
   "scripts": {
     "release": "standard-version",
     "build": "tsc -p tsconfig.json",

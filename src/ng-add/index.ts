@@ -16,30 +16,64 @@ import { getPackageJson, overwritePackageJson } from '../utils';
 
 export default (options: Schema): Rule => {
   return chain([
-    addDependencies,
+    addDependencies(options),
     addCommitlintConfigFile,
-    addHuskyConfig,
-    addCommitizenConfig,
-    addNpmRunScript,
+    addDependency(options.husky) ? addHuskyConfig : noop(),
+    addDependency(options.commitizen) ? addCommitizenConfig : noop(),
+    addDependency(options.standardVersion) ? addNpmRunScript : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
 };
 
-const addDependencies = () => (tree: Tree, context: SchematicContext) => {
+const addDependency = (configForDependency: boolean | undefined) => {
+  return (
+    configForDependency === true || typeof configForDependency === 'undefined'
+  );
+};
+
+const addDependencies = (options: Schema) => (
+  tree: Tree,
+  context: SchematicContext
+) => {
   context.logger.info('Added npm packages as dev dependencies');
   const packageJson = getPackageJson(tree);
 
-  const devDepsToAdd = {
+  let devDepsToAdd: { [key: string]: string } = {
     '@commitlint/cli': '^8.2.0',
     '@commitlint/config-conventional': '^8.2.0',
-    commitizen: '^4.0.3',
-    'cz-conventional-changelog': '^3.0.2',
-    husky: '^3.0.9',
-    'standard-version': '^7.0.0',
   };
+
+  if (addDependency(options.commitizen)) {
+    devDepsToAdd = {
+      ...devDepsToAdd,
+      commitizen: '^4.0.3',
+      'cz-conventional-changelog': '^3.0.2',
+    };
+  } else {
+    context.logger.info('- Skips adding commitizen');
+  }
+
+  if (addDependency(options.husky)) {
+    devDepsToAdd = {
+      ...devDepsToAdd,
+      husky: '^3.0.9',
+    };
+  } else {
+    context.logger.info('- Skips adding husky');
+  }
+
+  if (addDependency(options.standardVersion)) {
+    devDepsToAdd = {
+      ...devDepsToAdd,
+      'standard-version': '^7.0.0',
+    };
+  } else {
+    context.logger.info('- Skips adding standard-version');
+  }
+
   packageJson.devDependencies = {
-    ...devDepsToAdd,
     ...packageJson.devDependencies,
+    ...devDepsToAdd,
   };
 
   overwritePackageJson(tree, packageJson);

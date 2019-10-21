@@ -3,11 +3,27 @@
   "id": "ngx-semantic-version",
   "title": "ngx-semantic-version Schema",
   "description": "configure commitlint, husky, commitizen and standard-version configuration",
+  "type": "object",
   "properties": {
     "skipInstall": {
       "type": "boolean",
       "description": "Skip installing the npm packages",
       "default": false
+    },
+    "commitizen": {
+      "type": "boolean",
+      "description": "Do not install and configure commitizen",
+      "default": true
+    },
+    "husky": {
+      "type": "boolean",
+      "description": "Do not install and configure husky",
+      "default": true
+    },
+    "standardVersion": {
+      "type": "boolean",
+      "description": "Do not install and configure standard-version",
+      "default": true
     }
   },
   "required": []
