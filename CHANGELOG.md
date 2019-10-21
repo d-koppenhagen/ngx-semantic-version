@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.1.2...v0.1.3) (2019-10-21)
+
+
+### Features
+
+* adds options to skip adding packages ([fc01543](https://github.com/d-koppenhagen/ngx-semantic-version/commit/fc01543f38548c79b2e99c8395f52446d9379004)), closes [#9](https://github.com/d-koppenhagen/ngx-semantic-version/issues/9)
+
 ### [0.1.2](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.1.1...v0.1.2) (2019-10-15)
 
 
