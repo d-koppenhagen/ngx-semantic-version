@@ -1,12 +1,9 @@
-import {
-  SchematicTestRunner,
-  UnitTestTree,
-} from '@angular-devkit/schematics/testing';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 
 export async function setupProject(
   tree: UnitTestTree,
   schematicRunner: SchematicTestRunner,
-  name: string
+  name: string,
 ) {
   tree = await schematicRunner
     .runExternalSchematicAsync('@schematics/angular', 'workspace', {
@@ -24,7 +21,7 @@ export async function setupProject(
         name,
         projectRoot: '',
       },
-      tree
+      tree,
     )
     .toPromise();
 

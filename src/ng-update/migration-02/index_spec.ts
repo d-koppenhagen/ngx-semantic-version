@@ -1,8 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
-import {
-  SchematicTestRunner,
-  UnitTestTree,
-} from '@angular-devkit/schematics/testing';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
 
 const packagePath = '/package.json';
@@ -26,9 +23,7 @@ describe('update to version 0.0.5', () => {
     const pkg = packageJsonAfterMigration(beforeMigration);
     const { devDependencies } = pkg;
     expect(devDependencies['@commitlint/config-angular']).not.toBeDefined();
-    expect(devDependencies['@commitlint/config-conventional']).toEqual(
-      '^8.2.0'
-    );
+    expect(devDependencies['@commitlint/config-conventional']).toEqual('^8.2.0');
   });
 
   it('should not remove modified @commitlint/config-angular version from package.json', () => {

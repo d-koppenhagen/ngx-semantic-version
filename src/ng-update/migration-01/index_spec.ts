@@ -1,8 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
-import {
-  SchematicTestRunner,
-  UnitTestTree,
-} from '@angular-devkit/schematics/testing';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
 
 const packagePath = '/package.json';
@@ -31,21 +28,16 @@ describe('update from version 0.0.4', () => {
   it(`should remove a previous configuration`, () => {
     const beforeMigration = huskykHookForTest(
       'prepare-commit-msg',
-      prepareCommitMsgHookToBeRemoved
+      prepareCommitMsgHookToBeRemoved,
     );
     const pkg = packageJsonAfterMigration(beforeMigration);
     expect(pkg.husky.hooks['prepare-commit-msg']).not.toBeDefined();
   });
   it(`should not touch if the husky hook has been modified`, () => {
-    const beforeMigration = huskykHookForTest(
-      'prepare-commit-msg',
-      'some other user defined hook'
-    );
+    const beforeMigration = huskykHookForTest('prepare-commit-msg', 'some other user defined hook');
     const pkg = packageJsonAfterMigration(beforeMigration);
     expect(pkg.husky.hooks['prepare-commit-msg']).toBeDefined();
-    expect(pkg.husky.hooks['prepare-commit-msg']).not.toEqual(
-      prepareCommitMsgHookToBeRemoved
-    );
+    expect(pkg.husky.hooks['prepare-commit-msg']).not.toEqual(prepareCommitMsgHookToBeRemoved);
   });
   it('should update dependencies in package.json', () => {
     const beforeMigration = `{

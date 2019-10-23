@@ -1,9 +1,4 @@
-import {
-  Rule,
-  SchematicContext,
-  Tree,
-  chain,
-} from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, chain } from '@angular-devkit/schematics';
 import { getPackageJson, overwritePackageJson } from '../../utils';
 
 export default (_options: any): Rule => {
@@ -17,8 +12,7 @@ const addHuskyConfig = () => (tree: Tree, context: SchematicContext) => {
   if (
     packageJson.husky &&
     packageJson.husky.hooks &&
-    packageJson.husky.hooks['prepare-commit-msg'] ===
-      'exec < /dev/tty && git cz --hook'
+    packageJson.husky.hooks['prepare-commit-msg'] === 'exec < /dev/tty && git cz --hook'
   ) {
     delete packageJson.husky.hooks['prepare-commit-msg'];
   }

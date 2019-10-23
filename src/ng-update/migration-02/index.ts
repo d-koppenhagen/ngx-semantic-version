@@ -15,10 +15,7 @@ export default (_options: any): Rule => {
   return chain([removeCommitlintAngularConfig, overrideCommitlintConfigFile]);
 };
 
-const removeCommitlintAngularConfig = () => (
-  tree: Tree,
-  context: SchematicContext
-) => {
+const removeCommitlintAngularConfig = () => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Updates npm packages as dev dependencies');
   const packageJson = getPackageJson(tree);
 
@@ -30,15 +27,9 @@ const removeCommitlintAngularConfig = () => (
   overwritePackageJson(tree, packageJson);
 };
 
-const overrideCommitlintConfigFile = () => (
-  tree: Tree,
-  context: SchematicContext
-) => {
+const overrideCommitlintConfigFile = () => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added commitlint configuration file');
   const sourceTemplates = url('./files/commitlint.config.js');
   const sourceParameterizedTemplates = apply(sourceTemplates, [template({})]);
-  return mergeWith(sourceParameterizedTemplates, MergeStrategy.Overwrite)(
-    tree,
-    context
-  );
+  return mergeWith(sourceParameterizedTemplates, MergeStrategy.Overwrite)(tree, context);
 };

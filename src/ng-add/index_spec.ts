@@ -1,9 +1,6 @@
 import { resolve } from 'path';
 import { HostTree } from '@angular-devkit/schematics';
-import {
-  SchematicTestRunner,
-  UnitTestTree,
-} from '@angular-devkit/schematics/testing';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
 import { Schema } from './schema';
 import { setupProject } from '../test-utils';
@@ -11,7 +8,7 @@ import { setupProject } from '../test-utils';
 describe('ngx-semantic-version schematic', () => {
   const schematicRunner = new SchematicTestRunner(
     'ngx-semantic-version',
-    resolve(__dirname, '../collection.json')
+    resolve(__dirname, '../collection.json'),
   );
   const project = 'foo';
   const defaultOptions: Schema = {
@@ -62,9 +59,7 @@ describe('ngx-semantic-version schematic', () => {
       const packageJson = JSON.parse(getFileContent(appTree, packageJsonPath));
       const { husky } = packageJson;
       expect(appTree.files).toContain(packageJsonPath);
-      expect(husky.hooks['commit-msg']).toEqual(
-        'commitlint -E HUSKY_GIT_PARAMS'
-      );
+      expect(husky.hooks['commit-msg']).toEqual('commitlint -E HUSKY_GIT_PARAMS');
     });
 
     it(`should add the 'commitizen' configuration`, () => {
@@ -72,20 +67,14 @@ describe('ngx-semantic-version schematic', () => {
       const packageJson = JSON.parse(getFileContent(appTree, packageJsonPath));
       const { config } = packageJson;
       expect(appTree.files).toContain(packageJsonPath);
-      expect(config.commitizen.path).toEqual(
-        './node_modules/cz-conventional-changelog'
-      );
+      expect(config.commitizen.path).toEqual('./node_modules/cz-conventional-changelog');
     });
   });
 
   describe(`when disabling 'husky'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync(
-          'ng-add',
-          { ...defaultOptions, husky: false },
-          appTree
-        )
+        .runSchematicAsync('ng-add', { ...defaultOptions, husky: false }, appTree)
         .toPromise();
     });
 
@@ -109,11 +98,7 @@ describe('ngx-semantic-version schematic', () => {
   describe(`when disabling 'commitizen'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync(
-          'ng-add',
-          { ...defaultOptions, commitizen: false },
-          appTree
-        )
+        .runSchematicAsync('ng-add', { ...defaultOptions, commitizen: false }, appTree)
         .toPromise();
     });
 
@@ -137,11 +122,7 @@ describe('ngx-semantic-version schematic', () => {
   describe(`when disabling 'standard-version'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync(
-          'ng-add',
-          { ...defaultOptions, standardVersion: false },
-          appTree
-        )
+        .runSchematicAsync('ng-add', { ...defaultOptions, standardVersion: false }, appTree)
         .toPromise();
     });
 

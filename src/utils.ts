@@ -51,10 +51,7 @@ export const getFileContents = (tree: Tree, filePath: string): string => {
   return buffer.toString();
 };
 
-export const getPackageJson = (
-  tree: Tree,
-  workingDirectory: string = ''
-): PackageJson => {
+export const getPackageJson = (tree: Tree, workingDirectory: string = ''): PackageJson => {
   const url = join(workingDirectory, PACKAGE_JSON);
 
   return getJsonFile(tree, url);
@@ -63,7 +60,7 @@ export const getPackageJson = (
 export const overwritePackageJson = (
   tree: Tree,
   content: PackageJson,
-  workingDirectory: string = ''
+  workingDirectory: string = '',
 ) => {
   const url = join(workingDirectory, PACKAGE_JSON);
 

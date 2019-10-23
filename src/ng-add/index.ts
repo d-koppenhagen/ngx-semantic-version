@@ -26,15 +26,10 @@ export default (options: Schema): Rule => {
 };
 
 const addDependency = (configForDependency: boolean | undefined) => {
-  return (
-    configForDependency === true || typeof configForDependency === 'undefined'
-  );
+  return configForDependency === true || typeof configForDependency === 'undefined';
 };
 
-const addDependencies = (options: Schema) => (
-  tree: Tree,
-  context: SchematicContext
-) => {
+const addDependencies = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added npm packages as dev dependencies');
   const packageJson = getPackageJson(tree);
 
@@ -121,10 +116,7 @@ const addCommitizenConfig = () => (tree: Tree, context: SchematicContext) => {
   overwritePackageJson(tree, packageJson);
 };
 
-const addCommitlintConfigFile = () => (
-  tree: Tree,
-  context: SchematicContext
-) => {
+const addCommitlintConfigFile = () => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added commitlint configuration file');
   const sourceTemplates = url('./files');
   const sourceParameterizedTemplates = apply(sourceTemplates, [template({})]);
