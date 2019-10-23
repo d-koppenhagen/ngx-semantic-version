@@ -1,6 +1,8 @@
 # ngx-semantic-version
 
 [![npm](https://img.shields.io/npm/v/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
+[![Dependency Status](https://david-dm.org/d-koppenhagen/ngx-semantic-version.svg)](https://david-dm.org/d-koppenhagen/ngx-semantic-version)
+[![devDependency Status](https://david-dm.org/d-koppenhagen/ngx-semantic-version/dev-status.svg)](https://david-dm.org/d-koppenhagen/ngx-semantic-version?type=dev)
 [![npm](https://img.shields.io/npm/l/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
@@ -10,6 +12,8 @@
 [![npm](https://img.shields.io/npm/dm/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
 [![npm](https://img.shields.io/npm/dy/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
 [![npm](https://img.shields.io/npm/dt/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
+
+[![GitHub forks](https://img.shields.io/github/forks/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Fork)](https://github.com/d-koppenhagen/ngx-semantic-version/fork) [![GitHub stars](https://img.shields.io/github/stars/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Star)](https://github.com/d-koppenhagen/ngx-semantic-version)
 
 This angular-cli schematic, will let you use unified commit messages and let's you release new versions (bumping up the correct version part by analyzing your git history).
 It will help you to keep your `CHNAGELOG.md` up to date and release new tagged versions.
