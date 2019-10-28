@@ -17,10 +17,13 @@ import { getPackageJson, overwritePackageJson } from '../utils';
 export default (options: Schema): Rule => {
   return chain([
     addDependencies(options),
-    addCommitlintConfigFile,
+    addCommitlintConfigFile(options),
     addDependency(options.husky) ? addHuskyConfig : noop(),
     addDependency(options.commitizen) ? addCommitizenConfig : noop(),
     addDependency(options.standardVersion) ? addNpmRunScript : noop(),
+    addDependency(options.standardVersion) && options.issuePrefix
+      ? standardVersionConfig(options.issuePrefix)
+      : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
 };
@@ -116,10 +119,26 @@ const addCommitizenConfig = () => (tree: Tree, context: SchematicContext) => {
   overwritePackageJson(tree, packageJson);
 };
 
-const addCommitlintConfigFile = () => (tree: Tree, context: SchematicContext) => {
+const standardVersionConfig = (issuePrefix: string) => (tree: Tree, context: SchematicContext) => {
+  context.logger.info('Added standard-version config');
+  const packageJson = getPackageJson(tree);
+
+  const scriptsToAdd = {
+    issuePrefixes: [issuePrefix],
+  };
+  packageJson['standard-version'] = { ...scriptsToAdd, ...packageJson['standard-version'] };
+
+  overwritePackageJson(tree, packageJson);
+};
+
+const addCommitlintConfigFile = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added commitlint configuration file');
   const sourceTemplates = url('./files');
-  const sourceParameterizedTemplates = apply(sourceTemplates, [template({})]);
+  const sourceParameterizedTemplates = apply(sourceTemplates, [
+    template({
+      issuePrefix: options.issuePrefix || '',
+    }),
+  ]);
   return mergeWith(sourceParameterizedTemplates)(tree, context);
 };
 

@@ -31,6 +31,11 @@ describe('ngx-semantic-version schematic', () => {
 
     it(`should add the 'commitlint' configuration file`, () => {
       expect(appTree.files).toContain('/commitlint.config.js');
+      const fileContent = getFileContent(appTree, '/commitlint.config.js');
+      expect(fileContent).not.toMatch(/rules: {\s+\'references-empty\': \[2, \'never\'\].\s+\},/g);
+      expect(fileContent).not.toMatch(
+        /parserPreset: {\s+parserOpts: \{\s+issuePrefixes: \[\'\PREFIX-\'\],\s+},\s+},/g,
+      );
     });
 
     it(`should add all required dependencies to the 'package.json'`, () => {
@@ -140,6 +145,29 @@ describe('ngx-semantic-version schematic', () => {
       const { scripts } = packageJson;
       expect(appTree.files).toContain(packageJsonPath);
       expect(scripts.release).not.toBeDefined();
+    });
+  });
+
+  describe(`when using an issue prefix`, () => {
+    beforeEach(async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync('ng-add', { ...defaultOptions, issuePrefix: 'PREFIX-' }, appTree)
+        .toPromise();
+    });
+
+    it(`should configure 'issuePrefixes' in '/commitlint.config.js'`, () => {
+      expect(appTree.files).toContain('/commitlint.config.js');
+      const fileContent = getFileContent(appTree, '/commitlint.config.js');
+      expect(fileContent).toMatch(/rules: {\s+\'references-empty\': \[2, \'never\'\].\s+\},/g);
+      expect(fileContent).toMatch(
+        /parserPreset: {\s+parserOpts: \{\s+issuePrefixes: \[\'\PREFIX-\'\],\s+},\s+},/g,
+      );
+    });
+
+    it(`should add 'standard-version' config`, () => {
+      const packageJsonPath = '/package.json';
+      const packageJson = JSON.parse(getFileContent(appTree, packageJsonPath));
+      expect(packageJson['standard-version'].issuePrefixes).toContain('PREFIX-');
     });
   });
 });

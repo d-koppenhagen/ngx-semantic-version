@@ -43,6 +43,43 @@ ng add ngx-semantic-version
 | `--husky=false`           | Skips adding `husky` to the project                                |
 | `--commitizen=false`      | Skips adding `commitizen` to the project                           |
 | `--standardVersion=false` | Skips adding `standard-version` to the project                     |
+| `--issuePrefix="<PREFIX>"`| configure an issue prefix that should be checked by each commit    |
+
+#### forec including references by configuring an issue prefix
+
+When adding the schematic using e.g. `--issuePrefix="PREFIX-"`, commitlint will be configured to use
+the defined issue prefix in commit messages. Therefore the following configuration will be added
+to the `commitlint.config.js` configuration file:
+
+```js
+module.exports = {
+  // ...
+  rules: {
+    'references-empty': [2, 'never'],
+  },
+  parserPreset: {
+    parserOpts: {
+      issuePrefixes: ['PREFIX-'],
+    },
+  },
+};
+```
+
+The prefix will be also configured for usage within _standard-version_ in your `package.json`:
+```json
+// ...
+"standard-version": {
+  "issuePrefixes": ["PREFIX-"],
+}
+```
+
+This is very helpful if you want to force the users to include always an reference to your issue
+tracking system (in the example above the issue racking system will use this style: `PREFIX-1242`).
+
+> The line `'references-empty': [2, 'never'],` will tell commitlint that an issue reference has
+to be included always. You can change the value of `2` to `1` to just warn the user instead of
+rejecting the commit messages. All configuration option are described in the official
+[docs of commitlint](https://commitlint.js.org/#/reference-rules).
 
 ### Update the schematics
 

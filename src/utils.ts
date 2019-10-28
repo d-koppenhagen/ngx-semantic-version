@@ -21,6 +21,9 @@ export interface PackageJson {
       'commit-msg'?: string;
     };
   };
+  'standard-version'?: {
+    issuePrefixes: string[];
+  };
 }
 
 class FileNotFoundException extends Error {

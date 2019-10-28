@@ -24,6 +24,11 @@
       "type": "boolean",
       "description": "Do not install and configure standard-version",
       "default": true
+    },
+    "issuePrefix": {
+      "type": "string",
+      "description": "configure an issue prefix that should be checked by each commit",
+      "default": ""
     }
   },
   "required": []
