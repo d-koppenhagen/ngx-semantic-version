@@ -45,7 +45,7 @@ ng add ngx-semantic-version
 | `--standardVersion=false` | Skips adding `standard-version` to the project                     |
 | `--issuePrefix="<PREFIX>"`| configure an issue prefix that should be checked by each commit    |
 
-#### forec including references by configuring an issue prefix
+#### force including references by configuring an issue prefix
 
 When adding the schematic using e.g. `--issuePrefix="PREFIX-"`, commitlint will be configured to use
 the defined issue prefix in commit messages. Therefore the following configuration will be added
@@ -66,6 +66,7 @@ module.exports = {
 ```
 
 The prefix will be also configured for usage within _standard-version_ in your `package.json`:
+
 ```json
 // ...
 "standard-version": {
