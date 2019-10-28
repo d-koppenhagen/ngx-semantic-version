@@ -9,28 +9,33 @@ assignees: ''
 
 # 🐞 Bug report
 
-## What feature is affected?
-<!-- Please pin-point the feature that is affected by this bug? -->
-<!-- ✍️edit: -->
+## What feature is affected
+<!-- Please pin-point the feature that is affected by this bug -->
+<!-- ✍️ edit: -->
 
-```
+```text
 - [ ] commitlint
 - [ ] husky
 - [ ] commitizen
 - [ ] standard-version
 ```
+
 ## Description
-<!-- ✍️--> A clear and concise description of the problem...
+
+<!-- ✍️ --> A clear and concise description of the problem...
 
 ## Reproduction
-<!-- ✍️--> Simply describe how to reproduce the bug situation
+
+<!-- ✍️ --> Simply describe how to reproduce the bug situation
 
 ## Error message
+
 <pre><code>
-<!-- ✍️--> <!-- Note the error message if one appears -->
+<!-- ✍️ --> <!-- Note the error message if one appears -->
 </code></pre>
 
 ## 🌍 Your Environment
+
 <pre><code>
 <!-- ✍️--> <!-- run `ng version` and `ng update` and paste output below -->
 </code></pre>

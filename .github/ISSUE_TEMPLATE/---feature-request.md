@@ -7,17 +7,20 @@ assignees: ''
 
 ---
 
-#  🧩Feature
+# 🧩 Feature
 
-## What feature / part will be affected?
-<!-- Please pin-point the feature that is affected by this bug? -->
-<!-- ✍️edit: -->
+## What feature / part will be affected
 
-```
+<!-- Please pin-point the feature that is affected by this issue -->
+<!-- ✍️ edit: -->
+
+```text
 - [ ] commitlint
 - [ ] husky
 - [ ] commitizen
 - [ ] standard-version
 ```
+
 ## Description
-<!-- ✍️--> A clear and concise description of the feature
+
+<!-- ✍️ --> A clear and concise description of the feature

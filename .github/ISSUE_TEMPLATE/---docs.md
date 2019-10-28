@@ -7,7 +7,8 @@ assignees: ''
 
 ---
 
-#  📗Docs
+# 📗 Docs
 
 ## Description
-<!-- ✍️--> A short description of the docs improvement
+
+<!-- ✍️ --> A short description of the docs improvement
