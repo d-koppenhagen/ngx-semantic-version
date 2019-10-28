@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.0.0...v1.1.0) (2019-10-28)
+
+
+### Features
+
+* **noisafno:** sfdafda ([093347a](https://github.com/d-koppenhagen/ngx-semantic-version/commit/093347a96141f03c8638a42d62e2fa42bd34c273))
+* allow to specify an issue prefix ([fa1625f](https://github.com/d-koppenhagen/ngx-semantic-version/commit/fa1625fb8245edec79bf1c4eb7ffe861cf19a7b1)), closes [#10](https://github.com/d-koppenhagen/ngx-semantic-version/issues/10)
+
+
+### Bug Fixes
+
+* **saf:** asf ([1ae998d](https://github.com/d-koppenhagen/ngx-semantic-version/commit/1ae998daffba0a20c8503bfc3fb4c3056db45d41))
+
 ## [1.0.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.1.4...v1.0.0) (2019-10-21)
 
 ### [0.1.4](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v0.1.3...v0.1.4) (2019-10-21)
