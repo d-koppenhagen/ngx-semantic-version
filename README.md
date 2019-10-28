@@ -65,6 +65,14 @@ module.exports = {
 };
 ```
 
+This is very helpful if you want to force the users to include always an reference to your issue
+tracking system (in the example above the issue racking system will use this style: `PREFIX-1242`).
+
+> The line `'references-empty': [2, 'never'],` will tell commitlint that an issue reference has
+to be included always. You can change the value of `2` to `1` to just warn the user instead of
+rejecting the commit messages. All configuration option are described in the official
+[docs of commitlint](https://commitlint.js.org/#/reference-rules).
+
 The prefix will be also configured for usage within _standard-version_ in your `package.json`:
 
 ```json
@@ -74,13 +82,10 @@ The prefix will be also configured for usage within _standard-version_ in your `
 }
 ```
 
-This is very helpful if you want to force the users to include always an reference to your issue
-tracking system (in the example above the issue racking system will use this style: `PREFIX-1242`).
-
-> The line `'references-empty': [2, 'never'],` will tell commitlint that an issue reference has
-to be included always. You can change the value of `2` to `1` to just warn the user instead of
-rejecting the commit messages. All configuration option are described in the official
-[docs of commitlint](https://commitlint.js.org/#/reference-rules).
+> [You can specify further options for _standard-version_](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.1.0/README.md
+) that will be uses for the generated links
+in `CHANGELOG.md` generation. You can adjust the configuration block `standard-version` in your
+`package.json` and adjusts the options to satisfy your needs.
 
 ### Update the schematics
 
