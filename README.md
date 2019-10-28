@@ -97,7 +97,7 @@ To release the first version of you project simply run `npm run release -- --fir
 
 #### release regular version
 
-Just run `npm run release -- --first-release`
+Just run `npm run release`
 
 #### release a pre-release
 
