@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.1.1...v1.2.0) (2019-11-02)
+
+
+### Features
+
+* adds `--force` param ([60f4910](https://github.com/d-koppenhagen/ngx-semantic-version/commit/60f4910d3579453c3cb581fe6362f3f57184e8d3)), closes [#12](https://github.com/d-koppenhagen/ngx-semantic-version/issues/12)
+
 ### [1.1.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.1.0...v1.1.1) (2019-10-28)
 
 ## [1.1.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.0.0...v1.1.0) (2019-10-28)
