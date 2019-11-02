@@ -35,6 +35,10 @@ Just run the following command:
 ng add ngx-semantic-version
 ```
 
+> if you have already configured one of the modules and you want to use the configuration provided
+by ngx-semantic-version, you can use `--force` to override an existing configuration. Please check
+the changes carefully in git after running with `--force`.
+
 #### available options
 
 | Flag                      | Description                                                        |
@@ -43,7 +47,8 @@ ng add ngx-semantic-version
 | `--husky=false`           | Skips adding `husky` to the project                                |
 | `--commitizen=false`      | Skips adding `commitizen` to the project                           |
 | `--standardVersion=false` | Skips adding `standard-version` to the project                     |
-| `--issuePrefix="<PREFIX>"`| configure an issue prefix that should be checked by each commit    |
+| `--issuePrefix="<PREFIX>"`| Configure an issue prefix that should be checked by each commit    |
+| `--force`                 | Override existing configurations if neccessary                     |
 
 #### force including references by configuring an issue prefix
 

@@ -29,6 +29,11 @@
       "type": "string",
       "description": "configure an issue prefix that should be checked by each commit",
       "default": ""
+    },
+    "force": {
+      "type": "boolean",
+      "description": "force to override existing configuration params and files",
+      "default": false
     }
   },
   "required": []

@@ -21,8 +21,8 @@ export interface PackageJson {
       'commit-msg'?: string;
     };
   };
-  'standard-version'?: {
-    issuePrefixes: string[];
+  'standard-version': {
+    issuePrefixes?: string[];
   };
 }
 

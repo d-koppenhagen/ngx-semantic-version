@@ -8,6 +8,8 @@ import {
   template,
   url,
   noop,
+  FileEntry,
+  forEach,
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
@@ -18,11 +20,11 @@ export default (options: Schema): Rule => {
   return chain([
     addDependencies(options),
     addCommitlintConfigFile(options),
-    addDependency(options.husky) ? addHuskyConfig : noop(),
-    addDependency(options.commitizen) ? addCommitizenConfig : noop(),
-    addDependency(options.standardVersion) ? addNpmRunScript : noop(),
+    addDependency(options.husky) ? addHuskyConfig(options) : noop(),
+    addDependency(options.commitizen) ? addCommitizenConfig(options) : noop(),
+    addDependency(options.standardVersion) ? addNpmRunScript(options) : noop(),
     addDependency(options.standardVersion) && options.issuePrefix
-      ? standardVersionConfig(options.issuePrefix)
+      ? standardVersionConfig(options)
       : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
@@ -77,19 +79,23 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   overwritePackageJson(tree, packageJson);
 };
 
-const addNpmRunScript = () => (tree: Tree, context: SchematicContext) => {
+const addNpmRunScript = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added npm script for release');
   const packageJson = getPackageJson(tree);
 
   const scriptsToAdd = {
     release: 'standard-version',
   };
-  packageJson.scripts = { ...scriptsToAdd, ...packageJson.scripts };
+  if (options.force) {
+    packageJson.scripts = { ...packageJson.scripts, ...scriptsToAdd };
+  } else {
+    packageJson.scripts = { ...scriptsToAdd, ...packageJson.scripts };
+  }
 
   overwritePackageJson(tree, packageJson);
 };
 
-const addHuskyConfig = () => (tree: Tree, context: SchematicContext) => {
+const addHuskyConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added husky configuration');
 
   const packageJson = getPackageJson(tree);
@@ -99,12 +105,16 @@ const addHuskyConfig = () => (tree: Tree, context: SchematicContext) => {
       'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
     },
   };
-  packageJson.husky = { ...huskyConfig, ...packageJson.husky };
+  if (options.force) {
+    packageJson.husky = { ...packageJson.husky, ...huskyConfig }; // override
+  } else {
+    packageJson.husky = { ...huskyConfig, ...packageJson.husky }; // keep existing
+  }
 
   overwritePackageJson(tree, packageJson);
 };
 
-const addCommitizenConfig = () => (tree: Tree, context: SchematicContext) => {
+const addCommitizenConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added commitizen configuration');
 
   const packageJson = getPackageJson(tree);
@@ -114,19 +124,33 @@ const addCommitizenConfig = () => (tree: Tree, context: SchematicContext) => {
       path: './node_modules/cz-conventional-changelog',
     },
   };
-  packageJson.config = { ...commitizenConfig, ...packageJson.config };
+  if (options.force) {
+    packageJson.config = { ...packageJson.config, ...commitizenConfig }; // override
+  } else {
+    packageJson.config = { ...commitizenConfig, ...packageJson.config }; // keep existing
+  }
 
   overwritePackageJson(tree, packageJson);
 };
 
-const standardVersionConfig = (issuePrefix: string) => (tree: Tree, context: SchematicContext) => {
+const standardVersionConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added standard-version config');
   const packageJson = getPackageJson(tree);
 
   const scriptsToAdd = {
-    issuePrefixes: [issuePrefix],
+    issuePrefixes: [options.issuePrefix || ''],
   };
-  packageJson['standard-version'] = { ...scriptsToAdd, ...packageJson['standard-version'] };
+  if (options.force) {
+    packageJson['standard-version'] = {
+      ...packageJson['standard-version'],
+      ...scriptsToAdd,
+    }; // override
+  } else {
+    packageJson['standard-version'] = {
+      ...scriptsToAdd,
+      ...packageJson['standard-version'],
+    }; // keep existing
+  }
 
   overwritePackageJson(tree, packageJson);
 };
@@ -137,6 +161,14 @@ const addCommitlintConfigFile = (options: Schema) => (tree: Tree, context: Schem
   const sourceParameterizedTemplates = apply(sourceTemplates, [
     template({
       issuePrefix: options.issuePrefix || '',
+    }),
+    forEach((fileEntry: FileEntry) => {
+      // override existing files if force flag has been set
+      if (options.force && tree.exists(fileEntry.path)) {
+        tree.overwrite(fileEntry.path, fileEntry.content);
+        return null;
+      }
+      return fileEntry;
     }),
   ]);
   return mergeWith(sourceParameterizedTemplates)(tree, context);
