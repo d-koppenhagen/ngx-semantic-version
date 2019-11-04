@@ -17,8 +17,7 @@
 
 [![GitHub forks](https://img.shields.io/github/forks/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Fork)](https://github.com/d-koppenhagen/ngx-semantic-version/fork) [![GitHub stars](https://img.shields.io/github/stars/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Star)](https://github.com/d-koppenhagen/ngx-semantic-version)
 
-This angular-cli schematic, will let you use unified commit messages and let's you release new versions (bumping up the correct version part by analyzing your git history).
-It will help you to keep your `CHNAGELOG.md` up to date and release new tagged versions.
+_ngx-semantic-version_ is an Angular Schematic that will add and configure _commitlint_, _commitizen_, _husky_ and _standard-version_ for creating commit messages in the _conventional commit_ format and automate your release and Changelog generation respecting _semver_.
 
 The schematic will configure the following packages / services:
 
@@ -39,7 +38,7 @@ ng add ngx-semantic-version
 
 > if you have already configured one of the modules and you want to use the configuration provided
 by ngx-semantic-version, you can use `--force` to override an existing configuration. Please check
-the changes carefully in git after running with `--force`.
+the changes carefully using git after running with `--force`.
 
 #### available options
 
@@ -96,7 +95,14 @@ in `CHANGELOG.md` generation. You can adjust the configuration block `standard-v
 
 ### Update the schematics
 
-An update schematic is not implemented jet.
+Run `ng update` to see if an update is available.
+To proceed running an update of _ngx-semantic-version_, run the following command:
+
+```bash
+ng update ngx-semantic-version
+```
+
+> Updates will may touch your existing configuration. Please check the changes using git to verify the changes.
 
 ## What's included
 
@@ -116,8 +122,19 @@ You can find a description of supported adjustments in the
 
 ### [husky](https://www.npmjs.com/package/husky)
 
-Husky allows you to hook into the git lifecycle. It is used to check commit
-messages before storing them by using `commitlint`. As well as calling `commitizen` for interactive commit message generation.
+Husky allows us to hook into the git lifecycle using nodejs. It is used by _ngx-semantic-version_ to check a commit message right before storing it by using _commitlint_.
+Therefore it will add this part to your `package.json`:
+
+```json
+...
+"husky": {
+  "hooks": {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  }
+},
+```
+
+Husky uses the evnironment variable `HUSKY_GIT_PARAMS` containing the current git message you entered and it will pass this through _commitlint_ so it can be evaluated.
 
 ### [commitizen](https://www.npmjs.com/package/commitizen)
 
@@ -127,6 +144,17 @@ commit message always in the appropriate format by letting you configure the
 final message via an interactive cli.
 
 ![commitizen cli](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen.svg?sanitize=true)
+
+_ngx-semantic-version_ will configure _commitizen_ in your `package.json`, so that is will use the _conventional changelog_ as well:
+
+```json
+...
+"config": {
+  "commitizen": {
+    "path": "./node_modules/cz-conventional-changelog"
+  }
+}
+```
 
 > Tip: if you are using vscode, you can add the plugin [Visual Studio Code Commitizen Support](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) which will let you build the commit message directly via vscode.
 > ![commitizen vscode plugin](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen-vscode.png)
@@ -141,18 +169,30 @@ of the semantic version will be increased. Furthermore it will add a tag for the
 After adding this schematic, you can simply release a new version by running `npm run release`.
 This will keep your `CHNAGELOG.md` up to date and releases a new version of your project.
 
-#### release first version
+_ngx-semantic-version_ will configure a new script in your `package.json` that can be used for releasing a new version:
 
-To release the first version of you project simply run `npm run release -- --first-release`
+```json
+...
+"scripts": {
+  "release": "standard-version",
+},
+```
 
-#### release regular version
+If you typically use `npm version` to cut a new release, do this instead:
 
-Just run `npm run release`
+```bash
+npm run release
+```
 
-#### release a pre-release
+You should also consider use one of the following commands:
 
-`npm run release -- --prerelease` or `npm run release -- --prerelease alpha`, etc.
-For more options check out the [official doc](https://www.npmjs.com/package/standard-version#release-as-a-pre-release)
+```bash
+npm run release -- --first-release    # create the initial release and create the `CHANGELOG.md`
+npm run release -- --prerelease       # create a pre-release instead of a regular one
+npm run release -- --prerelease alpha # cut a new alpha release version
+```
+
+Check out the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
 
 ## Development
 
