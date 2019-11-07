@@ -144,7 +144,12 @@ to satisfy always the appropriate format. Commitizen will help you to build a
 commit message always in the appropriate format by letting you configure the
 final message via an interactive cli.
 
+When _commitizen_ is installed globally (`npm i -g commitizen`) you can run it by
+executing `git cz`.
+
 ![commitizen cli](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen.svg?sanitize=true)
+
+Alternatively, if you are using NPM 5.2+ you can use npx instead of installing globally: `npx git-cz`.
 
 _ngx-semantic-version_ will configure _commitizen_ in your `package.json`, so that is will use the _conventional changelog_ as well:
 
