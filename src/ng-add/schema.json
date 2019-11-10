@@ -5,25 +5,21 @@
   "description": "configure commitlint, husky, commitizen and standard-version configuration",
   "type": "object",
   "properties": {
+    "packages": {
+      "type": "array",
+      "description": "select the packages that should to be installed and configured",
+      "default": ["commitlint", "commitizen", "husky", "standard-version"],
+      "x-prompt": {
+        "message": "What packages do you want to be installed and configured?",
+        "type": "list",
+        "multiselect": true,
+        "items": ["commitlint", "commitizen", "husky", "standard-version"]
+      }
+    },
     "skipInstall": {
       "type": "boolean",
       "description": "Skip installing the npm packages",
       "default": false
-    },
-    "commitizen": {
-      "type": "boolean",
-      "description": "Do not install and configure commitizen",
-      "default": true
-    },
-    "husky": {
-      "type": "boolean",
-      "description": "Do not install and configure husky",
-      "default": true
-    },
-    "standardVersion": {
-      "type": "boolean",
-      "description": "Do not install and configure standard-version",
-      "default": true
     },
     "issuePrefix": {
       "type": "string",
@@ -36,5 +32,5 @@
       "default": false
     }
   },
-  "required": []
+  "required": ["packages"]
 }

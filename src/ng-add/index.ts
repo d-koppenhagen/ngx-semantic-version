@@ -19,31 +19,34 @@ import { getPackageJson, overwritePackageJson } from '../utils';
 export default (options: Schema): Rule => {
   return chain([
     addDependencies(options),
-    addCommitlintConfigFile(options),
-    addDependency(options.husky) ? addHuskyConfig(options) : noop(),
-    addDependency(options.commitizen) ? addCommitizenConfig(options) : noop(),
-    addDependency(options.standardVersion) ? addNpmRunScript(options) : noop(),
-    addDependency(options.standardVersion) && options.issuePrefix
+    options.packages.includes('commitlint') ? addCommitlintConfigFile(options) : noop(),
+    options.packages.includes('husky') ? addHuskyConfig(options) : noop(),
+    options.packages.includes('commitizen') ? addCommitizenConfig(options) : noop(),
+    options.packages.includes('standard-version') ? addNpmRunScript(options) : noop(),
+    options.packages.includes('standard-version') && options.issuePrefix
       ? standardVersionConfig(options)
       : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
 };
 
-const addDependency = (configForDependency: boolean | undefined) => {
-  return configForDependency === true || typeof configForDependency === 'undefined';
-};
-
 const addDependencies = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added npm packages as dev dependencies');
   const packageJson = getPackageJson(tree);
 
-  let devDepsToAdd: { [key: string]: string } = {
-    '@commitlint/cli': '^8.2.0',
-    '@commitlint/config-conventional': '^8.2.0',
-  };
+  let devDepsToAdd: { [key: string]: string } = {};
 
-  if (addDependency(options.commitizen)) {
+  if (options.packages.includes('commitlint')) {
+    devDepsToAdd = {
+      ...devDepsToAdd,
+      '@commitlint/cli': '^8.2.0',
+      '@commitlint/config-conventional': '^8.2.0',
+    };
+  } else {
+    context.logger.info('- Skips adding commitlint');
+  }
+
+  if (options.packages.includes('commitizen')) {
     devDepsToAdd = {
       ...devDepsToAdd,
       commitizen: '^4.0.3',
@@ -53,7 +56,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
     context.logger.info('- Skips adding commitizen');
   }
 
-  if (addDependency(options.husky)) {
+  if (options.packages.includes('husky')) {
     devDepsToAdd = {
       ...devDepsToAdd,
       husky: '^3.0.9',
@@ -62,7 +65,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
     context.logger.info('- Skips adding husky');
   }
 
-  if (addDependency(options.standardVersion)) {
+  if (options.packages.includes('standard-version')) {
     devDepsToAdd = {
       ...devDepsToAdd,
       'standard-version': '^7.0.0',
