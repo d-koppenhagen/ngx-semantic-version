@@ -9,6 +9,7 @@
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 [![npm](https://img.shields.io/npm/dw/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
 [![npm](https://img.shields.io/npm/dm/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
@@ -143,7 +144,12 @@ to satisfy always the appropriate format. Commitizen will help you to build a
 commit message always in the appropriate format by letting you configure the
 final message via an interactive cli.
 
+When _commitizen_ is installed globally (`npm i -g commitizen`) you can run it by
+executing `git cz`.
+
 ![commitizen cli](https://raw.githubusercontent.com/d-koppenhagen/ngx-semantic-version/master/assets/commitizen.svg?sanitize=true)
+
+Alternatively, if you are using NPM 5.2+ you can use npx instead of installing globally: `npx git-cz`.
 
 _ngx-semantic-version_ will configure _commitizen_ in your `package.json`, so that is will use the _conventional changelog_ as well:
 

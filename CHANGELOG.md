@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.0...v1.2.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* add missing schema validation ([6554157](https://github.com/d-koppenhagen/ngx-semantic-version/commit/65541576ff55e1c857a074811fe2cefd84bd5de9))
+
 ## [1.2.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.1.1...v1.2.0) (2019-11-02)
 
 
