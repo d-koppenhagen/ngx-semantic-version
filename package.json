@@ -31,20 +31,20 @@
     "migrations": "./src/migration.json"
   },
   "dependencies": {
-    "@angular-devkit/core": "^8.3.9",
-    "@angular-devkit/schematics": "^8.3.9",
-    "@types/jasmine": "^3.3.9",
-    "@types/node": "^10.12.30",
-    "jasmine": "^3.3.1",
-    "typescript": "~3.5.3"
+    "@angular-devkit/core": "^9.0.0-rc.0",
+    "@angular-devkit/schematics": "^9.0.0-rc.0",
+    "typescript": "~3.6.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@schematics/angular": "^8.3.9",
+    "@types/jasmine": "~3.4.0",
+    "@types/node": "^12.11.1",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "husky": "^3.0.9",
+    "jasmine": "^3.5.0",
     "standard-version": "^7.0.0"
   },
   "husky": {
@@ -58,5 +58,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "standard-version": {
+    "issuePrefixes": [
+      true
+    ]
   }
 }
