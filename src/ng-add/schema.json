@@ -8,13 +8,14 @@
     "packages": {
       "type": "array",
       "description": "select the packages that should to be installed and configured",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "enum": ["commitlint", "commitizen", "husky", "standard-version"],
+        "type": "string"
+      },
       "default": ["commitlint", "commitizen", "husky", "standard-version"],
-      "x-prompt": {
-        "message": "What packages do you want to be installed and configured?",
-        "type": "list",
-        "multiselect": true,
-        "items": ["commitlint", "commitizen", "husky", "standard-version"]
-      }
+      "x-prompt": "What packages do you want to be installed and configured?"
     },
     "skipInstall": {
       "type": "boolean",
