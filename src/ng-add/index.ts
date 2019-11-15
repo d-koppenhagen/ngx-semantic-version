@@ -13,7 +13,7 @@ import {
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
-import { Schema } from './schema';
+import { NgxSemanticVersion as Schema } from './schema';
 import { getPackageJson, overwritePackageJson } from '../utils';
 
 export default (options: Schema): Rule => {

@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { HostTree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
-import { Schema } from './schema';
+import { NgxSemanticVersion as Schema } from './schema';
 import { setupProject } from '../test-utils';
 
 const PACKAGE_JSON_PATH = '/package.json';
