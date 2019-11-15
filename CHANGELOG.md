@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.1...v2.0.0-alpha.0) (2019-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* `--husky=<false|true>`, `--commitizen=<false|true>`, `--standardVersion=<false|true>` are not supported anymore| use `--packages=commitizen,husky,commitlint,standard-version` instead.
+By default all packaged will be added.
+
+### Features
+
+* provide packages from x-promt ([3390ff0](https://github.com/d-koppenhagen/ngx-semantic-version/commit/3390ff04d803fd8829c530c0a86c2cb0f528dcb3)), closes [#11](https://github.com/d-koppenhagen/ngx-semantic-version/issues/11)
+
 ### [1.2.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.0...v1.2.1) (2019-11-06)
 
 
