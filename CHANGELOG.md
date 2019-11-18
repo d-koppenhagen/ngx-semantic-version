@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-alpha.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2019-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* `--force` will override existing files if there is a conflict. `--overrideConfigurations` can be used now to override conflicts within existing configuration parameters
+
+### Features
+
+* introduce `--standardVersionConfig` param ([94e84c5](https://github.com/d-koppenhagen/ngx-semantic-version/commit/94e84c5b44cac887af6021508fb9ea2f8b4cb75e))
+* introduce `overrideConfigurations` param ([f91f92e](https://github.com/d-koppenhagen/ngx-semantic-version/commit/f91f92eebffdfe2683c5ac6378f93810261b6d53))
+
 ## [2.0.0-alpha.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.1...v2.0.0-alpha.0) (2019-11-15)
 
 
