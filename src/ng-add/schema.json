@@ -27,9 +27,9 @@
       "description": "configure an issue prefix that should be checked by each commit",
       "default": ""
     },
-    "force": {
+    "overrideConfigurations": {
       "type": "boolean",
-      "description": "force to override existing configuration params and files",
+      "description": "Override existing configuration parameters",
       "default": false
     }
   },

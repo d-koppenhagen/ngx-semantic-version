@@ -49,7 +49,8 @@ the changes carefully using git after running with `--force`.
 | `--skipInstall`           | Skips installing new `node_modules` after modifying `package.json` |
 | `--packages="commitlint, husky, commitizen, standard-version"` | Define the packages to add.   |
 | `--issuePrefix="<PREFIX>"`| Configure an issue prefix that should be checked by each commit    |
-| `--force`                 | Override existing configurations if neccessary                     |
+| `--overrideConfigurations`| Do override existing configuration parameters if necesary          |
+| `--force`                 | Ignore errors and override already existing files                  |
 
 #### force including references by configuring an issue prefix
 

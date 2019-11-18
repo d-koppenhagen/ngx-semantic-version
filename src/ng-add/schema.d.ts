@@ -16,7 +16,7 @@ export interface NgxSemanticVersion {
      */
     issuePrefix?: string;
     /**
-     * force to override existing configuration params and files
+     * Override existing configuration parameters
      */
-    force?: boolean;
+    overrideConfigurations?: boolean;
 }

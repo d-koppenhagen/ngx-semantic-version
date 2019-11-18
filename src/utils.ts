@@ -26,6 +26,8 @@ export interface PackageJson {
   };
 }
 
+export type PackageJsonConfigPart = { [key: string]: any };
+
 class FileNotFoundException extends Error {
   constructor(fileName: string) {
     const message = `File ${fileName} not found!`;
@@ -68,4 +70,18 @@ export const overwritePackageJson = (
   const url = join(workingDirectory, PACKAGE_JSON);
 
   tree.overwrite(url, JSON.stringify(content, null, 2));
+};
+
+export const getMergedPackageJsonConfig = (
+  existingConfig: PackageJsonConfigPart,
+  newConfig: PackageJsonConfigPart,
+  overrideExisting = true,
+) => {
+  let mergedConfig: PackageJsonConfigPart = {};
+  if (overrideExisting) {
+    mergedConfig = { ...existingConfig, ...newConfig };
+  } else {
+    mergedConfig = { ...newConfig, ...existingConfig };
+  }
+  return mergedConfig;
 };

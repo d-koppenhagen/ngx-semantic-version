@@ -246,7 +246,7 @@ describe('ngx-semantic-version schematic', () => {
       };
     });
 
-    describe(`and not using '--force'`, () => {
+    describe(`and not using '--overrideConfigurations'`, () => {
       beforeEach(async () => {
         appTree.overwrite(PACKAGE_JSON_PATH, JSON.stringify(packageJsonModified));
         appTree.delete(COMMITLINT_PATH);
@@ -278,7 +278,7 @@ describe('ngx-semantic-version schematic', () => {
       });
     });
 
-    describe(`and using '--force'`, () => {
+    describe(`and using '--overrideConfigurations'`, () => {
       beforeEach(async () => {
         appTree.overwrite(PACKAGE_JSON_PATH, JSON.stringify(packageJsonModified));
         appTree.overwrite(COMMITLINT_PATH, '// fooBar');
@@ -286,7 +286,7 @@ describe('ngx-semantic-version schematic', () => {
         appTreeOnExistingProject = await schematicRunner
           .runSchematicAsync(
             'ng-add',
-            { ...defaultOptions, force: true, issuePrefix: 'bar' },
+            { ...defaultOptions, overrideConfigurations: true, issuePrefix: 'bar' },
             appTreeOnExistingProject,
           )
           .toPromise();
