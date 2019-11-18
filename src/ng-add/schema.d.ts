@@ -12,6 +12,10 @@ export interface NgxSemanticVersion {
      */
     skipInstall?: boolean;
     /**
+     * add the standard-version default configuration to the `packages.json` file
+     */
+    standardVersionConfig?: boolean;
+    /**
      * configure an issue prefix that should be checked by each commit
      */
     issuePrefix?: string;

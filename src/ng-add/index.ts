@@ -23,9 +23,7 @@ export default (options: Schema): Rule => {
     options.packages.includes('husky') ? addHuskyConfig(options) : noop(),
     options.packages.includes('commitizen') ? addCommitizenConfig(options) : noop(),
     options.packages.includes('standard-version') ? addNpmRunScript(options) : noop(),
-    options.packages.includes('standard-version') && options.issuePrefix
-      ? standardVersionConfig(options)
-      : noop(),
+    options.packages.includes('standard-version') ? standardVersionConfig(options) : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
 };
@@ -139,19 +137,74 @@ const addCommitizenConfig = (options: Schema) => (tree: Tree, context: Schematic
 };
 
 const standardVersionConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
-  context.logger.info('Added standard-version config');
+  if (!options.issuePrefix && !options.standardVersionConfig) return noop();
+
+  context.logger.info('Added standard-version configuration');
   const packageJson = getPackageJson(tree);
 
-  const configBefore = { ...packageJson['standard-version'] };
-  const configNew = {
-    issuePrefixes: [options.issuePrefix || ''],
+  const configBefore = {
+    ...packageJson['standard-version'],
   };
+
+  const STANDARD_VERSION_DEFAULTS = {
+    types: [
+      {
+        type: 'feat',
+        section: 'Features',
+      },
+      {
+        type: 'fix',
+        section: 'Bug Fixes',
+      },
+      {
+        type: 'chore',
+        hidden: true,
+      },
+      {
+        type: 'ci',
+        hidden: true,
+      },
+      {
+        type: 'build',
+        hidden: true,
+      },
+      {
+        type: 'docs',
+        hidden: true,
+      },
+      {
+        type: 'style',
+        hidden: true,
+      },
+      {
+        type: 'refactor',
+        hidden: true,
+      },
+      {
+        type: 'perf',
+        hidden: true,
+      },
+      {
+        type: 'test',
+        hidden: true,
+      },
+    ],
+    header: 'Changelog',
+    commitUrlFormat: '{{host}}/{{owner}}/{{repository}}/commit/{{hash}}',
+    compareUrlFormat: '{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}',
+    issueUrlFormat: '{{host}}/{{owner}}/{{repository}}/issues/{{id}}',
+    userUrlFormat: '{{host}}/{{user}}',
+    releaseCommitMessageFormat: 'chore(release): {{currentTag}}',
+    issuePrefixes: [options.issuePrefix || '#'],
+  };
+  const configNew = options.standardVersionConfig ? STANDARD_VERSION_DEFAULTS : {};
 
   packageJson['standard-version'] = getMergedPackageJsonConfig(
     configBefore,
     configNew,
     options.overrideConfigurations,
   );
+
   overwritePackageJson(tree, packageJson);
 };
 

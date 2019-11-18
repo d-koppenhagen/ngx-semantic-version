@@ -22,6 +22,11 @@
       "description": "Skip installing the npm packages",
       "default": false
     },
+    "standardVersionConfig": {
+      "type": "boolean",
+      "description": "add the standard-version default configuration to the `packages.json` file",
+      "default": "false"
+    },
     "issuePrefix": {
       "type": "string",
       "description": "configure an issue prefix that should be checked by each commit",

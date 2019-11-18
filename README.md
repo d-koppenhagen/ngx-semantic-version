@@ -51,6 +51,7 @@ the changes carefully using git after running with `--force`.
 | `--issuePrefix="<PREFIX>"`| Configure an issue prefix that should be checked by each commit    |
 | `--overrideConfigurations`| Do override existing configuration parameters if necesary          |
 | `--force`                 | Ignore errors and override already existing files                  |
+| `--standardVersionConfig` | Add the base configuration for _standard-version_ to `package.json` for adjusting it later|
 
 #### force including references by configuring an issue prefix
 
@@ -198,7 +199,15 @@ npm run release -- --prerelease       # create a pre-release instead of a regula
 npm run release -- --prerelease alpha # cut a new alpha release version
 ```
 
-Check out the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
+To adjust the temnplate of the generated `CHANGELOG.md` or the types of commits included in it you need to modify the _standard-version_ configuration.
+You can use `--standardVersionConfig` within _ngx-semantic-version_ to add the default configuration to your `package.json`.
+After that you can simply adjust the configuration to your needs:
+
+```bash
+ng add ngx-semantic-version --standardVersionConfig
+```
+
+Check out also the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
 
 ## Development
 
