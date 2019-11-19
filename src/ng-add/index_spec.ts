@@ -4,6 +4,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { getFileContent } from '@schematics/angular/utility/test';
 import { NgxSemanticVersion as Schema } from './schema';
 import { setupProject } from '../test-utils';
+import { STANDARD_VERSION_DEFAULTS } from './defaults';
 
 const PACKAGE_JSON_PATH = '/package.json';
 const COMMITLINT_PATH = '/commitlint.config.js';
@@ -205,6 +206,32 @@ describe('ngx-semantic-version schematic', () => {
     it(`should add 'standard-version' config`, () => {
       const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
       expect(packageJson['standard-version'].issuePrefixes).toContain('PREFIX-');
+    });
+  });
+
+  describe(`when using '--standardVersionConfig'`, () => {
+    it(`should add the basic configuration to '/package.json'`, async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync('ng-add', { ...defaultOptions, standardVersionConfig: true }, appTree)
+        .toPromise();
+      const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
+      expect(packageJson['standard-version']).toEqual(STANDARD_VERSION_DEFAULTS);
+    });
+
+    it(`should add the basic configuration with 'issuePrefix' to '/package.json'`, async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync(
+          'ng-add',
+          { ...defaultOptions, standardVersionConfig: true, issuePrefix: 'PREFIX-' },
+          appTree,
+        )
+        .toPromise();
+      const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
+      const expectedConfig = {
+        ...STANDARD_VERSION_DEFAULTS,
+        issuePrefixes: ['PREFIX-'],
+      };
+      expect(packageJson['standard-version']).toEqual(expectedConfig);
     });
   });
 
