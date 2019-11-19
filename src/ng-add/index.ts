@@ -15,6 +15,12 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 import { NgxSemanticVersion as Schema } from './schema';
 import { getPackageJson, overwritePackageJson, getMergedPackageJsonConfig } from '../utils';
+import {
+  DEV_DEPS_TO_ADD,
+  HUSKY_DEFAULTS,
+  COMMITIZEN_DEFAULTS,
+  STANDARD_VERSION_DEFAULTS,
+} from './defaults';
 
 export default (options: Schema): Rule => {
   return chain([
@@ -37,8 +43,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   if (options.packages.includes('commitlint')) {
     devDepsToAdd = {
       ...devDepsToAdd,
-      '@commitlint/cli': '^8.2.0',
-      '@commitlint/config-conventional': '^8.2.0',
+      ...DEV_DEPS_TO_ADD.commitlint,
     };
   } else {
     context.logger.info('- Skips adding commitlint');
@@ -47,8 +52,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   if (options.packages.includes('commitizen')) {
     devDepsToAdd = {
       ...devDepsToAdd,
-      commitizen: '^4.0.3',
-      'cz-conventional-changelog': '^3.0.2',
+      ...DEV_DEPS_TO_ADD.commitizen,
     };
   } else {
     context.logger.info('- Skips adding commitizen');
@@ -57,7 +61,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   if (options.packages.includes('husky')) {
     devDepsToAdd = {
       ...devDepsToAdd,
-      husky: '^3.0.9',
+      ...DEV_DEPS_TO_ADD.husky,
     };
   } else {
     context.logger.info('- Skips adding husky');
@@ -66,7 +70,7 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   if (options.packages.includes('standard-version')) {
     devDepsToAdd = {
       ...devDepsToAdd,
-      'standard-version': '^7.0.0',
+      ...DEV_DEPS_TO_ADD.standardVersion,
     };
   } else {
     context.logger.info('- Skips adding standard-version');
@@ -101,15 +105,10 @@ const addHuskyConfig = (options: Schema) => (tree: Tree, context: SchematicConte
   const packageJson = getPackageJson(tree);
 
   const configBefore = { ...packageJson.husky };
-  const configNew = {
-    hooks: {
-      'commit-msg': 'commitlint -E HUSKY_GIT_PARAMS',
-    },
-  };
 
   packageJson.husky = getMergedPackageJsonConfig(
     configBefore,
-    configNew,
+    HUSKY_DEFAULTS,
     options.overrideConfigurations,
   );
   overwritePackageJson(tree, packageJson);
@@ -121,15 +120,10 @@ const addCommitizenConfig = (options: Schema) => (tree: Tree, context: Schematic
   const packageJson = getPackageJson(tree);
 
   const configBefore = { ...packageJson.config };
-  const configNew = {
-    commitizen: {
-      path: './node_modules/cz-conventional-changelog',
-    },
-  };
 
   packageJson.config = getMergedPackageJsonConfig(
     configBefore,
-    configNew,
+    COMMITIZEN_DEFAULTS,
     options.overrideConfigurations,
   );
 
@@ -146,58 +140,11 @@ const standardVersionConfig = (options: Schema) => (tree: Tree, context: Schemat
     ...packageJson['standard-version'],
   };
 
-  const STANDARD_VERSION_DEFAULTS = {
-    types: [
-      {
-        type: 'feat',
-        section: 'Features',
-      },
-      {
-        type: 'fix',
-        section: 'Bug Fixes',
-      },
-      {
-        type: 'chore',
-        hidden: true,
-      },
-      {
-        type: 'ci',
-        hidden: true,
-      },
-      {
-        type: 'build',
-        hidden: true,
-      },
-      {
-        type: 'docs',
-        hidden: true,
-      },
-      {
-        type: 'style',
-        hidden: true,
-      },
-      {
-        type: 'refactor',
-        hidden: true,
-      },
-      {
-        type: 'perf',
-        hidden: true,
-      },
-      {
-        type: 'test',
-        hidden: true,
-      },
-    ],
-    header: 'Changelog',
-    commitUrlFormat: '{{host}}/{{owner}}/{{repository}}/commit/{{hash}}',
-    compareUrlFormat: '{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}',
-    issueUrlFormat: '{{host}}/{{owner}}/{{repository}}/issues/{{id}}',
-    userUrlFormat: '{{host}}/{{user}}',
-    releaseCommitMessageFormat: 'chore(release): {{currentTag}}',
+  const defaults = {
+    ...STANDARD_VERSION_DEFAULTS,
     issuePrefixes: [options.issuePrefix || '#'],
   };
-  const configNew = options.standardVersionConfig ? STANDARD_VERSION_DEFAULTS : {};
+  const configNew = options.standardVersionConfig ? defaults : {};
 
   packageJson['standard-version'] = getMergedPackageJsonConfig(
     configBefore,
