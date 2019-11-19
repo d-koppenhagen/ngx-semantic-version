@@ -44,10 +44,10 @@
     "@types/node": "^12.11.1",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "husky": "^3.0.9",
+    "dtsgenerator": "^2.3.1",
+    "husky": "^3.1.0",
     "jasmine": "^3.5.0",
-    "standard-version": "^7.0.0",
-    "dtsgenerator": "^2.3.1"
+    "standard-version": "^7.0.1"
   },
   "husky": {
     "hooks": {

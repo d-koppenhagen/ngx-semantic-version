@@ -8,10 +8,10 @@ export const DEV_DEPS_TO_ADD = {
     'cz-conventional-changelog': '^3.0.2',
   },
   husky: {
-    husky: '^3.0.9',
+    husky: '^3.1.0',
   },
   standardVersion: {
-    'standard-version': '^7.0.0',
+    'standard-version': '^7.0.1',
   },
 };
 
