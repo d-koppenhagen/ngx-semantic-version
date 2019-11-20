@@ -13,8 +13,13 @@ import {
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
-import { NgxSemanticVersion as Schema } from './schema';
-import { getPackageJson, overwritePackageJson, getMergedPackageJsonConfig } from '../utils';
+import { NgxSemanticVersion as Schema, PackageName } from './schema';
+import {
+  getPackageJson,
+  overwritePackageJson,
+  getMergedPackageJsonConfig,
+  PackageJsonConfigPart,
+} from '../utils';
 import {
   DEV_DEPS_TO_ADD,
   HUSKY_DEFAULTS,
@@ -38,42 +43,25 @@ const addDependencies = (options: Schema) => (tree: Tree, context: SchematicCont
   context.logger.info('Added npm packages as dev dependencies');
   const packageJson = getPackageJson(tree);
 
-  let devDepsToAdd: { [key: string]: string } = {};
+  let devDepsToAdd: PackageJsonConfigPart<string> = {};
 
-  if (options.packages.includes('commitlint')) {
-    devDepsToAdd = {
-      ...devDepsToAdd,
-      ...DEV_DEPS_TO_ADD.commitlint,
-    };
-  } else {
-    context.logger.info('- Skips adding commitlint');
-  }
+  const map = new Map([
+    ['commitlint', DEV_DEPS_TO_ADD],
+    ['commitizen', DEV_DEPS_TO_ADD],
+    ['husky', DEV_DEPS_TO_ADD],
+    ['standard-version', DEV_DEPS_TO_ADD],
+  ]);
 
-  if (options.packages.includes('commitizen')) {
-    devDepsToAdd = {
-      ...devDepsToAdd,
-      ...DEV_DEPS_TO_ADD.commitizen,
-    };
-  } else {
-    context.logger.info('- Skips adding commitizen');
-  }
-
-  if (options.packages.includes('husky')) {
-    devDepsToAdd = {
-      ...devDepsToAdd,
-      ...DEV_DEPS_TO_ADD.husky,
-    };
-  } else {
-    context.logger.info('- Skips adding husky');
-  }
-
-  if (options.packages.includes('standard-version')) {
-    devDepsToAdd = {
-      ...devDepsToAdd,
-      ...DEV_DEPS_TO_ADD.standardVersion,
-    };
-  } else {
-    context.logger.info('- Skips adding standard-version');
+  for (const [key, value] of map.entries()) {
+    const searchKey = key as PackageName;
+    if (options.packages.includes(searchKey)) {
+      devDepsToAdd = {
+        ...devDepsToAdd,
+        ...value[searchKey],
+      };
+    } else {
+      context.logger.info(`- Skips adding ${searchKey}`);
+    }
   }
 
   packageJson.devDependencies = {
@@ -100,60 +88,40 @@ const addNpmRunScript = (options: Schema) => (tree: Tree, context: SchematicCont
 };
 
 const addHuskyConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
-  context.logger.info('Added husky configuration');
-
-  const packageJson = getPackageJson(tree);
-
-  const configBefore = { ...packageJson.husky };
-
-  packageJson.husky = getMergedPackageJsonConfig(
-    configBefore,
-    HUSKY_DEFAULTS,
-    options.overrideConfigurations,
-  );
-  overwritePackageJson(tree, packageJson);
+  addConfig(tree, context, options, 'husky', 'husky', HUSKY_DEFAULTS);
 };
 
 const addCommitizenConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
-  context.logger.info('Added commitizen configuration');
-
-  const packageJson = getPackageJson(tree);
-
-  const configBefore = { ...packageJson.config };
-
-  packageJson.config = getMergedPackageJsonConfig(
-    configBefore,
-    COMMITIZEN_DEFAULTS,
-    options.overrideConfigurations,
-  );
-
-  overwritePackageJson(tree, packageJson);
+  addConfig(tree, context, options, 'commitizen', 'config', COMMITIZEN_DEFAULTS);
 };
 
 const standardVersionConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   if (!options.issuePrefix && !options.standardVersionConfig) return noop();
-
-  context.logger.info('Added standard-version configuration');
-  const packageJson = getPackageJson(tree);
-
-  const configBefore = {
-    ...packageJson['standard-version'],
-  };
-
   const defaults = {
     ...STANDARD_VERSION_DEFAULTS,
     issuePrefixes: [options.issuePrefix || '#'],
   };
-  const configNew = options.standardVersionConfig ? defaults : {};
+  addConfig(tree, context, options, 'standard-version', 'standard-version', defaults);
+};
 
-  packageJson['standard-version'] = getMergedPackageJsonConfig(
+function addConfig(
+  tree: Tree,
+  context: SchematicContext,
+  options: Schema,
+  what: string,
+  getPackageJsonPart: 'husky' | 'config' | 'standard-version',
+  defaults: object,
+) {
+  context.logger.info('Added ' + what + ' configuration');
+  const packageJson = getPackageJson(tree);
+  const configBefore = { ...packageJson[getPackageJsonPart] };
+  packageJson[getPackageJsonPart] = getMergedPackageJsonConfig(
     configBefore,
-    configNew,
+    defaults,
     options.overrideConfigurations,
   );
-
   overwritePackageJson(tree, packageJson);
-};
+}
 
 const addCommitlintConfigFile = (options: Schema) => (tree: Tree, context: SchematicContext) => {
   context.logger.info('Added commitlint configuration file');

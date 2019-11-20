@@ -10,7 +10,7 @@ export const DEV_DEPS_TO_ADD = {
   husky: {
     husky: '^3.1.0',
   },
-  standardVersion: {
+  'standard-version': {
     'standard-version': '^7.0.1',
   },
 };

@@ -6,7 +6,7 @@ export interface NgxSemanticVersion {
     /**
      * select the packages that should to be installed and configured
      */
-    packages: ("commitlint" | "commitizen" | "husky" | "standard-version")[];
+    packages: PackageName[];
     /**
      * Skip installing the npm packages
      */
@@ -24,3 +24,5 @@ export interface NgxSemanticVersion {
      */
     overrideConfigurations?: boolean;
 }
+
+export type PackageName = "commitlint" | "commitizen" | "husky" | "standard-version";

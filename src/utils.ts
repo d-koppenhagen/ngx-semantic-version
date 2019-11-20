@@ -4,12 +4,12 @@ import { SchematicsException, Tree } from '@angular-devkit/schematics';
 const PACKAGE_JSON = 'package.json';
 
 export interface PackageJson {
-  dependencies: { [key: string]: string };
-  devDependencies: { [key: string]: string };
+  dependencies: PackageJsonConfigPart<string>;
+  devDependencies: PackageJsonConfigPart<string>;
   name?: string;
   version?: string;
   license?: string;
-  scripts?: { [key: string]: string };
+  scripts?: PackageJsonConfigPart<string>;
   config?: {
     commitizen?: {
       path?: string;
@@ -26,7 +26,9 @@ export interface PackageJson {
   };
 }
 
-export type PackageJsonConfigPart = { [key: string]: any };
+export interface PackageJsonConfigPart<T> {
+  [key: string]: T;
+}
 
 class FileNotFoundException extends Error {
   constructor(fileName: string) {
@@ -73,11 +75,11 @@ export const overwritePackageJson = (
 };
 
 export const getMergedPackageJsonConfig = (
-  existingConfig: PackageJsonConfigPart,
-  newConfig: PackageJsonConfigPart,
+  existingConfig: PackageJsonConfigPart<any>,
+  newConfig: PackageJsonConfigPart<any>,
   overrideExisting = true,
 ) => {
-  let mergedConfig: PackageJsonConfigPart = {};
+  let mergedConfig: PackageJsonConfigPart<any> = {};
   if (overrideExisting) {
     mergedConfig = { ...existingConfig, ...newConfig };
   } else {
