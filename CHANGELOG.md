@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-alpha.1...v2.0.0-beta.0) (2019-11-21)
+
 ## [2.0.0-alpha.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2019-11-18)
 
 
