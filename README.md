@@ -109,7 +109,7 @@ ng update ngx-semantic-version
 
 ### [commitlint](https://commitlint.js.org)
 
-Commitlint will lint your commit massage and check it against some common rules.
+Commitlint will lint your commit message and check it against some common rules.
 It will throw an error if the messages doesn't match with the rules.
 This schematic will install the ruleset [`@commitlint/config-conventional`](https://npmjs.com/package/@commitlint/config-conventional) by default.
 
