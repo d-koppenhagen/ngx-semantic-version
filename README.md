@@ -109,7 +109,7 @@ ng update ngx-semantic-version
 
 ### [commitlint](https://commitlint.js.org)
 
-Commitlint will lint your commit massage and check it against some common rules.
+Commitlint will lint your commit message and check it against some common rules.
 It will throw an error if the messages doesn't match with the rules.
 This schematic will install the ruleset [`@commitlint/config-conventional`](https://npmjs.com/package/@commitlint/config-conventional) by default.
 
@@ -135,12 +135,12 @@ Therefore it will add this part to your `package.json`:
 },
 ```
 
-Husky uses the evnironment variable `HUSKY_GIT_PARAMS` containing the current git message you entered and it will pass this through _commitlint_ so it can be evaluated.
+Husky uses the environment variable `HUSKY_GIT_PARAMS` containing the current git message you entered and it will pass this through _commitlint_ so it can be evaluated.
 
 ### [commitizen](https://www.npmjs.com/package/commitizen)
 
-When having restrichtions within the commit message text it can be struggeling
-to satisfy always the appropriate format. Commitizen will help you to build a
+When having restrictions within the commit message text it can be difficult
+to always satisfy the appropriate format. Commitizen will help you to build a
 commit message always in the appropriate format by letting you configure the
 final message via an interactive cli.
 
