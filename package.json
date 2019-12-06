@@ -28,6 +28,9 @@
   },
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
   "ng-update": {
     "migrations": "./src/migration.json"
   },
