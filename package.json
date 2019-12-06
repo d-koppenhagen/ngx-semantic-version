@@ -1,6 +1,6 @@
 {
   "name": "ngx-semantic-version",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "This schematic will add commitlint, husky, commitizen and standard-version configurations",
   "scripts": {
     "release": "standard-version",
@@ -43,11 +43,11 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@schematics/angular": "^9.0.0-rc.3",
-    "@types/jasmine": "~3.4.0",
-    "@types/node": "^12.11.1",
+    "@types/jasmine": "~3.5.0",
+    "@types/node": "^12.11.14",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "dtsgenerator": "^2.3.1",
+    "dtsgenerator": "^2.3.2",
     "husky": "^3.1.0",
     "jasmine": "^3.5.0",
     "standard-version": "^7.0.1"
