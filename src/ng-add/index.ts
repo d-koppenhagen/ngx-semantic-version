@@ -28,13 +28,17 @@ import {
 } from './defaults';
 
 export default (options: Schema): Rule => {
+  const addStandardVersionConfigToPackageJson =
+    (options.issuePrefix && options.issuePrefix !== '') || options.standardVersionConfig;
   return chain([
     addDependencies(options),
     options.packages.includes('commitlint') ? addCommitlintConfigFile(options) : noop(),
     options.packages.includes('husky') ? addHuskyConfig(options) : noop(),
     options.packages.includes('commitizen') ? addCommitizenConfig(options) : noop(),
     options.packages.includes('standard-version') ? addNpmRunScript(options) : noop(),
-    options.packages.includes('standard-version') ? standardVersionConfig(options) : noop(),
+    options.packages.includes('standard-version') && addStandardVersionConfigToPackageJson
+      ? standardVersionConfig(options)
+      : noop(),
     options.skipInstall ? noop() : installDependencies,
   ]);
 };
@@ -96,11 +100,9 @@ const addCommitizenConfig = (options: Schema) => (tree: Tree, context: Schematic
 };
 
 const standardVersionConfig = (options: Schema) => (tree: Tree, context: SchematicContext) => {
-  if (!options.issuePrefix && !options.standardVersionConfig) return noop();
-  const defaults = {
-    ...STANDARD_VERSION_DEFAULTS,
-    issuePrefixes: [options.issuePrefix || '#'],
-  };
+  let defaults = {};
+  if (options.standardVersionConfig) defaults = { ...STANDARD_VERSION_DEFAULTS };
+  defaults = { ...defaults, issuePrefixes: [options.issuePrefix || '#'] };
   addConfig(tree, context, options, 'standard-version', 'standard-version', defaults);
 };
 

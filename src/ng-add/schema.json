@@ -25,7 +25,7 @@
     "standardVersionConfig": {
       "type": "boolean",
       "description": "add the standard-version default configuration to the `packages.json` file",
-      "default": "false"
+      "default": false
     },
     "issuePrefix": {
       "type": "string",
