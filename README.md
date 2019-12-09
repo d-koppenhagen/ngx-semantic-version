@@ -209,6 +209,10 @@ ng add ngx-semantic-version --standardVersionConfig
 
 Check out also the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
 
+## Default configurations
+
+Check out the file [src/ng-add/defaults.ts](./src/ng-add/defaults.ts) if you want to see what part will be added to your `package.json` and see the default values.
+
 ## Development
 
 For development hints, have a look at [DEVELOPMENT.md](./DEVELOPMENT.md)
