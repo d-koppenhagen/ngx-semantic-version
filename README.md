@@ -39,8 +39,8 @@ ng add ngx-semantic-version
 ```
 
 > if you have already configured one of the modules and you want to use the configuration provided
-by ngx-semantic-version, you can use `--force` to override an existing configuration. Please check
-the changes carefully using git after running with `--force`.
+by ngx-semantic-version, you can use `--overrideConfigurations` to override an existing configuration. Please check
+the changes carefully using git after running with `--overrideConfigurations`.
 
 #### available options
 
@@ -207,7 +207,7 @@ After that you can simply adjust the configuration to your needs:
 ng add ngx-semantic-version --standardVersionConfig
 ```
 
-Check out also the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
+> Please note that your projects [`repository` field](https://docs.npmjs.com/files/package.json#repository) should be filled in your `package.json`, as _standard-version_ will use this information for creating the links in the `CHANGELOG.md` to your issues and releases. Check out also the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
 
 ## Default configurations
 
