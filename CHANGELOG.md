@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.3](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-11)
+
+
+### Features
+
+* warning when missing 'repository' or 'bugs' fields ([25815db](https://github.com/d-koppenhagen/ngx-semantic-version/commit/25815dbfe94834fe9eb754905b8edf6e5fd8e88e)), closes [#20](https://github.com/d-koppenhagen/ngx-semantic-version/issues/20)
+
 ## [2.0.0-beta.2](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2019-12-09)
 
 
