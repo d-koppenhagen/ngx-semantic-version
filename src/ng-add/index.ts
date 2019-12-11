@@ -80,6 +80,13 @@ const addNpmRunScript = (options: Schema) => (tree: Tree, context: SchematicCont
   context.logger.info('Added npm script for release');
   const packageJson = getPackageJson(tree);
 
+  if (!packageJson.repository && !packageJson.bugs) {
+    context.logger.warn(
+      `Neither 'repository' or 'bugs' field found in your 'package.json'. To referencs your releases and issues correctly, you should add the fiels.
+Check out: https://github.com/d-koppenhagen/ngx-semantic-version/wiki/FAQ for further information`,
+    );
+  }
+
   const configBefore = { ...packageJson.scripts };
   const configNew = { release: 'standard-version' };
 

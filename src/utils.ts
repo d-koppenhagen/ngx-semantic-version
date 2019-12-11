@@ -10,6 +10,8 @@ export interface PackageJson {
   version?: string;
   license?: string;
   scripts?: PackageJsonConfigPart<string>;
+  repository?: PackageJsonConfigPart<string>;
+  bugs?: PackageJsonConfigPart<string>;
   config?: {
     commitizen?: {
       path?: string;
