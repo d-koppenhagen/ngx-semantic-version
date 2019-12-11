@@ -32,15 +32,20 @@ The schematic will configure the following packages / services:
 
 ### Add the schematics to your project
 
-Just run the following command:
+- Angular CLI >= 9.x.x
+  ```bash
+  ng add ngx-semantic-version
+  ```
 
-```sh
-ng add ngx-semantic-version
-```
+- Angular CLI 8.x.x | [docs](https://github.com/d-koppenhagen/ngx-semantic-version/tree/v1.2.1)
+
+  ```bash
+  ng add ngx-semantic-version@1
+  ```
 
 > if you have already configured one of the modules and you want to use the configuration provided
-by ngx-semantic-version, you can use `--overrideConfigurations` to override an existing configuration. Please check
-the changes carefully using git after running with `--overrideConfigurations`.
+by ngx-semantic-version, you can use `--overrideConfigurations` to override an existing configuration.
+Please check the changes carefully using git after running with `--overrideConfigurations`.
 
 #### available options
 

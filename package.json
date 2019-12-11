@@ -22,6 +22,10 @@
   ],
   "author": "Danny Koppenhagen <mail@d-koppenhagen.de> (https://d-koppenhagen.de)",
   "homepage": "https://github.com/d-koppenhagen/ngx-semantic-version",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-koppenhagen/ngx-semantic-version.git"
+  },
   "bugs": {
     "url": "https://github.com/d-koppenhagen/ngx-semantic-version/issues",
     "email": "mail@d-koppenhagen.de"
@@ -39,10 +43,13 @@
     "@angular-devkit/schematics": "^9.0.0-rc.5",
     "typescript": "~3.6.4"
   },
+  "peerDependencies": {
+    "@angular/cli": "^9.0.0-rc.5"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@schematics/angular": "^9.0.0-rc.3",
+    "@schematics/angular": "^9.0.0-rc.5",
     "@types/jasmine": "~3.5.0",
     "@types/node": "^12.11.1",
     "commitizen": "^4.0.3",
