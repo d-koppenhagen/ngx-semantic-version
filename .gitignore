@@ -7,7 +7,6 @@ src/**/*.d.ts
 # IDEs
 .idea/
 jsconfig.json
-.vscode/
 
 # Misc
 node_modules/
