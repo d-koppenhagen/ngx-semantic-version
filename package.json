@@ -6,8 +6,7 @@
     "release": "standard-version",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "test": "npm run build && jasmine **/*_spec.js",
-    "dtsgen": "dtsgen src/ng-add/schema.json -o src/ng-add/schema.d.ts"
+    "test": "npm run build && jasmine **/*_spec.js"
   },
   "keywords": [
     "schematics",
@@ -39,22 +38,21 @@
     "migrations": "./src/migration.json"
   },
   "dependencies": {
-    "@angular-devkit/core": "^9.0.0-rc.5",
-    "@angular-devkit/schematics": "^9.0.0-rc.5",
+    "@angular-devkit/core": "^9.0.0-rc.7",
+    "@angular-devkit/schematics": "^9.0.0-rc.7",
     "typescript": "~3.6.4"
   },
   "peerDependencies": {
-    "@angular/cli": "^9.0.0-rc.5"
+    "@angular/cli": "^9.0.0-rc.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@schematics/angular": "^9.0.0-rc.5",
+    "@schematics/angular": "^9.0.0-rc.7",
     "@types/jasmine": "~3.5.0",
     "@types/node": "^12.11.1",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
-    "dtsgenerator": "^2.3.2",
     "husky": "^3.1.0",
     "jasmine": "^3.5.0",
     "standard-version": "^7.0.1"
