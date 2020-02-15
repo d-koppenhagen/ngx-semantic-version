@@ -7,9 +7,10 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![ngx-semantic-version](https://img.shields.io/badge/%F0%9F%92%8E-ngx--semantic--version-blueviolet)](https://www.npmjs.com/package/ngx-semantic-version)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 [![npm](https://img.shields.io/npm/dw/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
 [![npm](https://img.shields.io/npm/dm/ngx-semantic-version.svg)](https://www.npmjs.com/package/ngx-semantic-version)
@@ -31,26 +32,31 @@ The schematic will configure the following packages / services:
 
 ### Add the schematics to your project
 
-Just run the following command:
+- Angular CLI >= 9.x.x
+  ```bash
+  ng add ngx-semantic-version
+  ```
 
-```sh
-ng add ngx-semantic-version
-```
+- Angular CLI 8.x.x | [docs](https://github.com/d-koppenhagen/ngx-semantic-version/tree/v1.2.1)
+
+  ```bash
+  ng add ngx-semantic-version@1
+  ```
 
 > if you have already configured one of the modules and you want to use the configuration provided
-by ngx-semantic-version, you can use `--force` to override an existing configuration. Please check
-the changes carefully using git after running with `--force`.
+by ngx-semantic-version, you can use `--overrideConfigurations` to override an existing configuration.
+Please check the changes carefully using git after running with `--overrideConfigurations`.
 
 #### available options
 
 | Flag                      | Description                                                        |
 | ------------------------- | ------------------------------------------------------------------ |
 | `--skipInstall`           | Skips installing new `node_modules` after modifying `package.json` |
-| `--husky=false`           | Skips adding `husky` to the project                                |
-| `--commitizen=false`      | Skips adding `commitizen` to the project                           |
-| `--standardVersion=false` | Skips adding `standard-version` to the project                     |
+| `--packages="commitlint, husky, commitizen, standard-version"` | Define the packages to add.   |
 | `--issuePrefix="<PREFIX>"`| Configure an issue prefix that should be checked by each commit    |
-| `--force`                 | Override existing configurations if neccessary                     |
+| `--overrideConfigurations`| Do override existing configuration parameters if necesary          |
+| `--force`                 | Ignore errors and override already existing files                  |
+| `--standardVersionConfig` | Add the base configuration for _standard-version_ to `package.json` for adjusting it later|
 
 #### force including references by configuring an issue prefix
 
@@ -198,7 +204,19 @@ npm run release -- --prerelease       # create a pre-release instead of a regula
 npm run release -- --prerelease alpha # cut a new alpha release version
 ```
 
-Check out the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
+To adjust the temnplate of the generated `CHANGELOG.md` or the types of commits included in it you need to modify the _standard-version_ configuration.
+You can use `--standardVersionConfig` within _ngx-semantic-version_ to add the default configuration to your `package.json`.
+After that you can simply adjust the configuration to your needs:
+
+```bash
+ng add ngx-semantic-version --standardVersionConfig
+```
+
+> Please note that your projects [`repository` field](https://docs.npmjs.com/files/package.json#repository) should be filled in your `package.json`, as _standard-version_ will use this information for creating the links in the `CHANGELOG.md` to your issues and releases. Check out also the [official documentation](https://www.npmjs.com/package/standard-version#release-as-a-pre-release) for further information.
+
+## Default configurations
+
+Check out the file [src/ng-add/defaults.ts](./src/ng-add/defaults.ts) if you want to see what part will be added to your `package.json` and see the default values.
 
 ## Development
 

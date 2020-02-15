@@ -2,8 +2,9 @@ import { resolve } from 'path';
 import { HostTree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
-import { Schema } from './schema';
+import { NgxSemanticVersion as Schema } from './schema';
 import { setupProject } from '../test-utils';
+import { STANDARD_VERSION_DEFAULTS } from './defaults';
 
 const PACKAGE_JSON_PATH = '/package.json';
 const COMMITLINT_PATH = '/commitlint.config.js';
@@ -16,6 +17,7 @@ describe('ngx-semantic-version schematic', () => {
   const project = 'foo';
   const defaultOptions: Schema = {
     skipInstall: false,
+    packages: ['commitlint', 'commitizen', 'husky', 'standard-version'],
   };
 
   let appTree: UnitTestTree;
@@ -75,10 +77,17 @@ describe('ngx-semantic-version schematic', () => {
     });
   });
 
-  describe(`when disabling 'husky'`, () => {
+  describe(`when not using 'husky'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync('ng-add', { ...defaultOptions, husky: false }, appTree)
+        .runSchematicAsync(
+          'ng-add',
+          {
+            ...defaultOptions,
+            packages: ['commitlint', 'commitizen', 'standard-version'],
+          },
+          appTree,
+        )
         .toPromise();
     });
 
@@ -97,10 +106,40 @@ describe('ngx-semantic-version schematic', () => {
     });
   });
 
+  describe(`when disabling 'commitlint'`, () => {
+    beforeEach(async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync(
+          'ng-add',
+          {
+            ...defaultOptions,
+            packages: ['commitizen', 'husky', 'standard-version'],
+          },
+          appTree,
+        )
+        .toPromise();
+    });
+
+    it(`should not add 'commitlint' to the project`, () => {
+      const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
+      const { devDependencies } = packageJson;
+      expect(appTree.files).toContain(PACKAGE_JSON_PATH);
+      expect(devDependencies['@commitlint/cli']).not.toBeDefined();
+      expect(devDependencies['@commitlint/config-conventional']).not.toBeDefined();
+    });
+  });
+
   describe(`when disabling 'commitizen'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync('ng-add', { ...defaultOptions, commitizen: false }, appTree)
+        .runSchematicAsync(
+          'ng-add',
+          {
+            ...defaultOptions,
+            packages: ['commitlint', 'husky', 'standard-version'],
+          },
+          appTree,
+        )
         .toPromise();
     });
 
@@ -122,7 +161,14 @@ describe('ngx-semantic-version schematic', () => {
   describe(`when disabling 'standard-version'`, () => {
     beforeEach(async () => {
       appTree = await schematicRunner
-        .runSchematicAsync('ng-add', { ...defaultOptions, standardVersion: false }, appTree)
+        .runSchematicAsync(
+          'ng-add',
+          {
+            ...defaultOptions,
+            packages: ['commitlint', 'commitizen', 'husky'],
+          },
+          appTree,
+        )
         .toPromise();
     });
 
@@ -160,6 +206,32 @@ describe('ngx-semantic-version schematic', () => {
     it(`should add 'standard-version' config`, () => {
       const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
       expect(packageJson['standard-version'].issuePrefixes).toContain('PREFIX-');
+    });
+  });
+
+  describe(`when using '--standardVersionConfig'`, () => {
+    it(`should add the basic configuration to '/package.json'`, async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync('ng-add', { ...defaultOptions, standardVersionConfig: true }, appTree)
+        .toPromise();
+      const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
+      expect(packageJson['standard-version']).toEqual(STANDARD_VERSION_DEFAULTS);
+    });
+
+    it(`should add the basic configuration with 'issuePrefix' to '/package.json'`, async () => {
+      appTree = await schematicRunner
+        .runSchematicAsync(
+          'ng-add',
+          { ...defaultOptions, standardVersionConfig: true, issuePrefix: 'PREFIX-' },
+          appTree,
+        )
+        .toPromise();
+      const packageJson = JSON.parse(getFileContent(appTree, PACKAGE_JSON_PATH));
+      const expectedConfig = {
+        ...STANDARD_VERSION_DEFAULTS,
+        issuePrefixes: ['PREFIX-'],
+      };
+      expect(packageJson['standard-version']).toEqual(expectedConfig);
     });
   });
 
@@ -201,7 +273,7 @@ describe('ngx-semantic-version schematic', () => {
       };
     });
 
-    describe(`and not using '--force'`, () => {
+    describe(`and not using '--overrideConfigurations'`, () => {
       beforeEach(async () => {
         appTree.overwrite(PACKAGE_JSON_PATH, JSON.stringify(packageJsonModified));
         appTree.delete(COMMITLINT_PATH);
@@ -233,7 +305,7 @@ describe('ngx-semantic-version schematic', () => {
       });
     });
 
-    describe(`and using '--force'`, () => {
+    describe(`and using '--overrideConfigurations'`, () => {
       beforeEach(async () => {
         appTree.overwrite(PACKAGE_JSON_PATH, JSON.stringify(packageJsonModified));
         appTree.overwrite(COMMITLINT_PATH, '// fooBar');
@@ -241,7 +313,7 @@ describe('ngx-semantic-version schematic', () => {
         appTreeOnExistingProject = await schematicRunner
           .runSchematicAsync(
             'ng-add',
-            { ...defaultOptions, force: true, issuePrefix: 'bar' },
+            { ...defaultOptions, overrideConfigurations: true, issuePrefix: 'bar' },
             appTreeOnExistingProject,
           )
           .toPromise();

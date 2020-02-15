@@ -1,6 +1,6 @@
 {
   "name": "ngx-semantic-version",
-  "version": "1.2.1",
+  "version": "2.0.0-beta.5",
   "description": "This schematic will add commitlint, husky, commitizen and standard-version configurations",
   "scripts": {
     "release": "standard-version",
@@ -21,35 +21,44 @@
   ],
   "author": "Danny Koppenhagen <mail@d-koppenhagen.de> (https://d-koppenhagen.de)",
   "homepage": "https://github.com/d-koppenhagen/ngx-semantic-version",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-koppenhagen/ngx-semantic-version.git"
+  },
   "bugs": {
     "url": "https://github.com/d-koppenhagen/ngx-semantic-version/issues",
     "email": "mail@d-koppenhagen.de"
   },
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
   "ng-update": {
     "migrations": "./src/migration.json"
   },
   "dependencies": {
-    "@angular-devkit/core": "^8.3.9",
-    "@angular-devkit/schematics": "^8.3.9",
-    "@types/jasmine": "^3.3.9",
-    "@types/node": "^10.12.30",
-    "jasmine": "^3.3.1",
-    "typescript": "~3.5.3"
+    "@angular-devkit/core": "^9.0.1",
+    "@angular-devkit/schematics": "^9.0.1",
+    "typescript": "~3.7.5"
+  },
+  "peerDependencies": {
+    "@angular/cli": "^9.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@schematics/angular": "^8.3.9",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@schematics/angular": "^9.0.1",
+    "@types/jasmine": "~3.5.3",
+    "@types/node": "^13.7.1",
     "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "husky": "^3.0.9",
-    "standard-version": "^7.0.0"
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.1",
+    "jasmine": "^3.5.0",
+    "standard-version": "^7.1.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
       "pre-push": "npm test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }

@@ -10,6 +10,11 @@
       "description": "Updates to Version 0.1.0",
       "version": "0.1.0",
       "factory": "./ng-update/migration-02/index"
+    },
+    "migration-03": {
+      "description": "Updates to Version 2",
+      "version": "2",
+      "factory": "./ng-update/migration-03/index"
     }
   }
 }

@@ -1,0 +1,20 @@
+{
+  "editor.wordWrapColumn": 100,
+  "editor.rulers": [100],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#f5ac4d",
+    "activityBar.activeBorder": "#077947",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#077947",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "titleBar.activeBackground": "#f2961d",
+    "titleBar.inactiveBackground": "#f2961d99",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveForeground": "#15202b99",
+    "statusBar.background": "#f2961d",
+    "statusBarItem.hoverBackground": "#d07b0c",
+    "statusBar.foreground": "#15202b"
+  },
+  "peacock.color": "#f2961d"
+}

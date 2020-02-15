@@ -2,6 +2,62 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.5](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-02-11)
+
+
+### Features
+
+* update default versions ([27c77c5](https://github.com/d-koppenhagen/ngx-semantic-version/commit/27c77c5d0b76ac86cdf8a3c77b1334f522ccf50c))
+
+## [2.0.0-beta.4](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-01-06)
+
+## [2.0.0-beta.3](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-12-11)
+
+
+### Features
+
+* warning when missing 'repository' or 'bugs' fields ([25815db](https://github.com/d-koppenhagen/ngx-semantic-version/commit/25815dbfe94834fe9eb754905b8edf6e5fd8e88e)), closes [#20](https://github.com/d-koppenhagen/ngx-semantic-version/issues/20)
+
+## [2.0.0-beta.2](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2019-12-09)
+
+
+### Bug Fixes
+
+* handle `standardVersionConfig` flag correctly ([6bb17ee](https://github.com/d-koppenhagen/ngx-semantic-version/commit/6bb17eef02313d922f3ad0201bf9c63d0141a2cd))
+
+## [2.0.0-beta.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2019-12-06)
+
+
+### Features
+
+* add package to devDependencies ([f129bb2](https://github.com/d-koppenhagen/ngx-semantic-version/commit/f129bb2712d7a6a41138b32c3440a81c13a6e15b)), closes [#18](https://github.com/d-koppenhagen/ngx-semantic-version/issues/18)
+
+## [2.0.0-beta.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-alpha.1...v2.0.0-beta.0) (2019-11-21)
+
+## [2.0.0-alpha.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2019-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* `--force` will override existing files if there is a conflict. `--overrideConfigurations` can be used now to override conflicts within existing configuration parameters
+
+### Features
+
+* introduce `--standardVersionConfig` param ([94e84c5](https://github.com/d-koppenhagen/ngx-semantic-version/commit/94e84c5b44cac887af6021508fb9ea2f8b4cb75e))
+* introduce `overrideConfigurations` param ([f91f92e](https://github.com/d-koppenhagen/ngx-semantic-version/commit/f91f92eebffdfe2683c5ac6378f93810261b6d53))
+
+## [2.0.0-alpha.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.1...v2.0.0-alpha.0) (2019-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* `--husky=<false|true>`, `--commitizen=<false|true>`, `--standardVersion=<false|true>` are not supported anymore| use `--packages=commitizen,husky,commitlint,standard-version` instead.
+By default all packaged will be added.
+
+### Features
+
+* provide packages from x-promt ([3390ff0](https://github.com/d-koppenhagen/ngx-semantic-version/commit/3390ff04d803fd8829c530c0a86c2cb0f528dcb3)), closes [#11](https://github.com/d-koppenhagen/ngx-semantic-version/issues/11)
+
 ### [1.2.1](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v1.2.0...v1.2.1) (2019-11-06)
 
 

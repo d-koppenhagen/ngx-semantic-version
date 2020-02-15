@@ -5,36 +5,38 @@
   "description": "configure commitlint, husky, commitizen and standard-version configuration",
   "type": "object",
   "properties": {
+    "packages": {
+      "type": "array",
+      "description": "select the packages that should to be installed and configured",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "enum": ["commitlint", "commitizen", "husky", "standard-version"],
+        "type": "string"
+      },
+      "default": ["commitlint", "commitizen", "husky", "standard-version"],
+      "x-prompt": "What packages do you want to be installed and configured?"
+    },
     "skipInstall": {
       "type": "boolean",
       "description": "Skip installing the npm packages",
       "default": false
     },
-    "commitizen": {
+    "standardVersionConfig": {
       "type": "boolean",
-      "description": "Do not install and configure commitizen",
-      "default": true
-    },
-    "husky": {
-      "type": "boolean",
-      "description": "Do not install and configure husky",
-      "default": true
-    },
-    "standardVersion": {
-      "type": "boolean",
-      "description": "Do not install and configure standard-version",
-      "default": true
+      "description": "add the standard-version default configuration to the `packages.json` file",
+      "default": false
     },
     "issuePrefix": {
       "type": "string",
       "description": "configure an issue prefix that should be checked by each commit",
       "default": ""
     },
-    "force": {
+    "overrideConfigurations": {
       "type": "boolean",
-      "description": "force to override existing configuration params and files",
+      "description": "Override existing configuration parameters",
       "default": false
     }
   },
-  "required": []
+  "required": ["packages"]
 }
