@@ -6,7 +6,8 @@
     "release": "standard-version",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "test": "npm run build && jasmine **/*_spec.js"
+    "test": "npm run build && jasmine **/*_spec.js",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "schematics",
