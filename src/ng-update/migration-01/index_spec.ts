@@ -1,5 +1,7 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import * as path from 'path';
 
 const packagePath = '/package.json';
@@ -14,12 +16,14 @@ const huskykHookForTest = (hook: string, command: string) => {
     }
   }`;
 };
-const packageJsonAfterMigration = (packgeJsonRawContent: string) => {
+const packageJsonAfterMigration = (packgeJsonRawContent: string): Observable<any> => {
   const emptyTree = Tree.empty() as UnitTestTree;
   const runner = new SchematicTestRunner('schematics', collectionPath);
   emptyTree.create(packagePath, packgeJsonRawContent);
-  const updatedTree = runner.runSchematic('migration-01', {}, emptyTree);
-  return JSON.parse(updatedTree.readContent(packagePath));
+  return runner.runSchematicAsync('migration-01', {}, emptyTree)
+    .pipe(
+      map(updatedTree => JSON.parse(updatedTree.readContent(packagePath)))
+    );
 };
 
 describe('update from version 0.0.4', () => {
@@ -30,14 +34,16 @@ describe('update from version 0.0.4', () => {
       'prepare-commit-msg',
       prepareCommitMsgHookToBeRemoved,
     );
-    const pkg = packageJsonAfterMigration(beforeMigration);
-    expect(pkg.husky.hooks['prepare-commit-msg']).not.toBeDefined();
+    packageJsonAfterMigration(beforeMigration).subscribe((pkg) => {
+      expect(pkg.husky.hooks['prepare-commit-msg']).not.toBeDefined();
+    });
   });
   it(`should not touch if the husky hook has been modified`, () => {
     const beforeMigration = huskykHookForTest('prepare-commit-msg', 'some other user defined hook');
-    const pkg = packageJsonAfterMigration(beforeMigration);
-    expect(pkg.husky.hooks['prepare-commit-msg']).toBeDefined();
-    expect(pkg.husky.hooks['prepare-commit-msg']).not.toEqual(prepareCommitMsgHookToBeRemoved);
+    packageJsonAfterMigration(beforeMigration).subscribe((pkg) => {
+      expect(pkg.husky.hooks['prepare-commit-msg']).toBeDefined();
+      expect(pkg.husky.hooks['prepare-commit-msg']).not.toEqual(prepareCommitMsgHookToBeRemoved);
+    });
   });
   it('should update dependencies in package.json', () => {
     const beforeMigration = `{
@@ -45,8 +51,9 @@ describe('update from version 0.0.4', () => {
         "husky": "^3.0.8"
       }
     }`;
-    const pkg = packageJsonAfterMigration(beforeMigration);
-    const { devDependencies } = pkg;
-    expect(devDependencies.husky).toEqual('^3.0.9');
+    packageJsonAfterMigration(beforeMigration).subscribe((pkg) => {
+      const { devDependencies } = pkg;
+      expect(devDependencies.husky).toEqual('^3.0.9');
+    });
   });
 });
