@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.1.0...v2.2.0) (2020-08-20)
+
+
+### Features
+
+* add mirgation for new package versions ([7fe59ae](https://github.com/d-koppenhagen/ngx-semantic-version/commit/7fe59ae83f01de646be3996ca25205b7ead93347))
+* use latest tooling versions ([74d7d85](https://github.com/d-koppenhagen/ngx-semantic-version/commit/74d7d85b32f0a1b64548ada21b8fa46b12e4a1e0))
+
 ## [2.1.0](https://github.com/d-koppenhagen/ngx-semantic-version/compare/v2.0.0...v2.1.0) (2020-06-25)
 
 
