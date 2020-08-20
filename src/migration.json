@@ -15,6 +15,11 @@
       "description": "Updates to Version 2",
       "version": "2",
       "factory": "./ng-update/migration-03/index"
+    },
+    "migration-04": {
+      "description": "Updates to latest tooling versions",
+      "version": "2.2",
+      "factory": "./ng-update/migration-04/index"
     }
   }
 }
