@@ -19,6 +19,8 @@
 
 [![GitHub forks](https://img.shields.io/github/forks/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Fork)](https://github.com/d-koppenhagen/ngx-semantic-version/fork) [![GitHub stars](https://img.shields.io/github/stars/d-koppenhagen/ngx-semantic-version.svg?style=social&label=Star)](https://github.com/d-koppenhagen/ngx-semantic-version)
 
+<a href="https://www.buymeacoffee.com/dkoppenhagen" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 _ngx-semantic-version_ is an Angular Schematic that will add and configure _commitlint_, _commitizen_, _husky_ and _standard-version_ for creating commit messages in the _conventional commit_ format and automate your release and Changelog generation respecting _semver_.
 
 The schematic will configure the following packages / services:
