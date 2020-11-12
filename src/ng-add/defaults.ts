@@ -1,14 +1,14 @@
 export const DEV_DEPS_TO_ADD = {
   commitlint: {
-    '@commitlint/cli': '^9.1.2',
-    '@commitlint/config-conventional': '^9.1.2',
+    '@commitlint/cli': '^11.0.0',
+    '@commitlint/config-conventional': '^11.0.0',
   },
   commitizen: {
-    commitizen: '^4.1.2',
-    'cz-conventional-changelog': '^3.2.0',
+    commitizen: '^4.2.2',
+    'cz-conventional-changelog': '^3.3.0',
   },
   husky: {
-    husky: '^4.2.5',
+    husky: '^4.3.0',
   },
   'standard-version': {
     'standard-version': '^9.0.0',
