@@ -31,11 +31,11 @@ describe('update to version >= 2', () => {
     }`;
     packageJsonAfterMigration(beforeMigration).subscribe((pkg) => {;
       const { devDependencies } = pkg;
-      expect(devDependencies['@commitlint/cli']).toEqual('^9.1.2');
-      expect(devDependencies['@commitlint/config-conventional']).toEqual('^9.1.2');
-      expect(devDependencies['commitizen']).toEqual('^4.1.2');
-      expect(devDependencies['cz-conventional-changelog']).toEqual('^3.2.0');
-      expect(devDependencies['husky']).toEqual('^4.2.5');
+      expect(devDependencies['@commitlint/cli']).toEqual('^11.0.0');
+      expect(devDependencies['@commitlint/config-conventional']).toEqual('^11.0.0');
+      expect(devDependencies['commitizen']).toEqual('^4.2.2');
+      expect(devDependencies['cz-conventional-changelog']).toEqual('^3.3.0');
+      expect(devDependencies['husky']).toEqual('^4.3.0');
       expect(devDependencies['standard-version']).toEqual('^9.0.0');
     });
   });
